@@ -1,0 +1,200 @@
+<div class="left_column">
+<div class="video_top_info">
+            <%= cl_image_tag(@post.user.image,:width => 133, :height => 133, :crop => :fill, class: "user_profile_photo_tag") %>
+            <%= "  " %><%= @post.user.name %>
+
+            <div>
+                <%= "| posted:" %>
+                <span class="glyphicon glyphicon-time" aria-hidden="false">
+                </span>
+                <%= "  " + (remove_unwanted_words distance_of_time_in_words(Time.now, @post.updated_at)) + " ago"  %>
+            </div>
+</div> 
+ 
+    <div class="center">
+        <%= cl_video_tag(@post.video.to_s.split("/upload/").last.split(".").first, :video_codec=>"h264", :width=>493, :crop=>:scale, :controls => true, :poster => true, :fallback_content => "Your browser does not support HTML5 video tags")%>
+    </div>
+    
+    <div class ="video-info-container-header-top">
+    <h5 class ="left"><small>Title: </small><%= @post.title %></h5>
+    <h5 class ="left"><small>Video Info: </small><%= @post.body %></h5>
+    <h5 class ="left"><small>Location: </small><%= @post.address %></h5>
+    </div>
+
+    <div class="feed_border">
+        <h6>Contact info:</h6>
+        <%= link_to "Direct message", user_profile_path(@post.user_id), class: "right_column_button" %>
+        <%= link_to "#{@post.user.name.split.first}'s profile", user_profile_path(@post.user_id), class: "right_column_button" %> 
+    </div>
+    
+</div>
+
+
+<!-- this is the user profile photo container  for right column-->
+        
+
+
+
+
+<!-- this is the "sign in or sign up forum" -->
+    <div class="right_column">
+<% if current_user %>
+        <ul id="topright_nav">
+        <li>
+          <%= cl_image_tag(current_user.image,:width => 133, :height => 133, :crop => :fill, class: "user_profile_photo_tag") %>
+                <small>Hello, </small>
+                  
+                  <a><%= link_to "#{current_user.name}", user_profile_path(current_user) %>
+                  </a>
+                  <!-- <span class="glyphicon glyphicon-cog" aria-hidden="true">
+                  </span> -->
+              
+              <ul> 
+                <li>
+                     <a><%= link_to "Your Profile", user_profile_path(current_user)%>
+                     </a>
+                </li> 
+                <li>
+                    <a><%= link_to "Edit Account", edit_users_path(current_user) %>
+                    </a>
+                </li>  
+                <li>
+                    <a><%= link_to "Log out", destroy_session_path %>
+                    </a>
+                </li>  
+              </ul>
+            </li>
+        </ul>
+      <hr class = "line_break">
+      <div class="feed_border">
+        <hr class = "small_line_break">
+          <h5 class="center">YOUR FOOTY™ DASHBOARD</h5>
+      <% if current_user %>
+        <%= link_to "POST FOOTY", new_post_path, class: "right_column_button"  %>
+        <%= link_to "CREATE EVENT", new_event_path, class: "right_column_button"  %>
+        <%= link_to "EDIT ACCOUNT", edit_users_path(current_user), class: "right_column_button"  %>
+        <%= link_to "LOG OUT", destroy_session_path, class: "right_column_button"  %>
+      <% else %>
+      <% end %>
+      </div>
+
+      <div class="rsvp_info">
+        <h4 class="center">THIS SKATERS INFORMATION</h4>
+        
+
+      <ul class="text_list">
+
+        <li>
+          <p class="black"><small>Name:</small> 
+            <%= @post.user.name%>        
+          </p>
+        </li>
+        
+        <li>
+          <p class="black"><small>Age:</small> 
+          <%= @post.user.age%> years old.
+          </p>
+        </li>
+
+        <li>
+          <p class="black"><small>Location :</small>
+            <%= @post.user.location%>        </p>
+        </li>
+        
+        <li>
+          <p class="black"><small>Email: </small><%= @post.user.email%></p>
+        </li>
+
+        <li>
+          <p class="black"><small>About Me:</small>
+         <%= @post.user.bio%></p>
+        </li>
+
+      </ul>
+    </div>
+
+    
+    <div class="feed_border">
+        <h5>Contact info:</h5>
+        <%= link_to "Direct message", user_profile_path(@post.user_id), class: "right_column_button" %>
+        <%= link_to "#{@post.user.name.split.first}'s profile", user_profile_path(@post.user_id), class: "right_column_button" %> 
+    </div>
+
+
+    
+        
+
+    <%= link_to "Return to All Posts",  posts_path, :class => "title_link, blue" %>
+    <%= link_to 'Destroy this post', @post, :class => "title_link_right", method: :delete, data: { confirm: 'Are you sure you want to delete this post?' } %>
+
+</div>
+
+
+
+
+<!-- ELSE!!!!! -->
+<% else %>
+
+<!-- <div class="right_column"> -->
+<!-- <div class="right_column"> -->
+    <div id="topright_nav">
+        <!-- <h4 class="center">New to the Footy app?</h4>
+        <h3 class="center">Sign up for Free!</h3>
+        <p class="center">It's simple and easy.</p>
+        <%= link_to "Create New Account", new_user_path, class: "submit-button, large_button" %>
+        <hr> -->
+        <h2 class="center">Hello, Sign in</h2>
+        <h5 class="center">your footy™ account.</h5>
+
+        <%= link_to "Log in", new_user_path, class: "submit-button, large_button" %>
+    </div>
+    <h4 class="center">the FOOTY™app</h4>
+<!-- </div> -->
+<div class="home_info">
+        <h4 class="black">the FOOTY™ info</h4>
+        <hr class = "line-break" >
+
+      <ul class="text_list">
+      
+        <li>
+          <p class="black"><small>Name:</small> 
+            <%= @post.user.name%>        
+          </p>
+        </li>
+        
+        <li>
+          <p class="black"><small>Age:</small> 
+          <%= @post.user.age%> years old.
+          </p>
+        </li>
+
+        <li>
+          <p class="black"><small>Location :</small>
+            <%= @post.user.location%>        </p>
+        </li>
+        
+        <li>
+          <p class="black"><small>Email: </small><%= @post.user.email%></p>
+        </li>
+
+        <li>
+          <p class="black"><small>About Me:</small>
+         <%= @post.user.bio%></p>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="feed_border">
+    
+     <hr class="small_line_break">
+        <h4>Contact info:</h4>
+        <%= link_to "Message #{@post.user.name.split.first}", user_profile_path(@post.user_id), class: "submit-button, large_button" %>
+
+
+    </div>
+
+
+</div>
+    <% end %>
+

@@ -1,0 +1,296 @@
+    
+
+<script>
+//= require jquery.turbolinks
+
+var map;
+
+function initialize() {
+  var mapOptions = {
+    zoom: 10,
+    // mapTypeId: google.maps.MapTypeId.HYBRID
+  };
+  // google.maps,Map creates map on div canvas
+  var map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+
+  // this creates a location of the current users location 
+  if(navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+          // this assigns the current users coordinats as pos
+          var pos = new google.maps.LatLng(position.coords.latitude,
+                                         position.coords.longitude);
+          // below creates the info window marker for current user location
+          var infowindow = new google.maps.InfoWindow({
+            // must use map
+            map: map,
+            // assigns the window to show on map at current user location
+            position: pos,
+            content: 'YOU ARE HERE'
+          });
+
+
+          // brings the users map to center their location
+        map.setCenter(pos);
+    });
+
+    handleNoGeolocation(true);
+  }
+  else {
+    // Browser doesn't support Geolocation
+      handleNoGeolocation(false);
+    }
+    
+    // variable for all markers in event.all. We extract the data from the <select hidden, id = "marker_data" multiple> tag. data is ["123.1,-76.928"] Jquery
+    var infowindow = null;
+    var markers = $("#marker_data").val();
+    var contentString;
+
+  for (var i = 0; i < markers.length; i++) {
+    // this splits data into two seperate strings of an array. Erase ","
+    var coordinates = markers[i].split(",");
+    // Number takes array turns strings into numbers for google pos variable
+    var pos = new google.maps.LatLng(Number(coordinates[0]),Number(coordinates[1]));
+        console.log(coordinates[3]);
+
+    var contentString ='<p>' + $("#marker_data").val() + '<p>' + '<a href = "/events/' + $("#id").val() + '"class = "large_button">' + 'CLICK FOR MORE INFO' + '</a>'+ '</p>';
+      
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString,
+      maxWidth: 500
+     });
+        // this creates the marker in the user view
+    var marker = new google.maps.Marker({
+        animation: google.maps.Animation.DROP,
+        position: pos,
+        map: map
+    });
+    // this creates zoom when user clicks marker
+  //   google.maps.event.addListener(marker, 'click', function() {
+  //   infowindow.open(map,marker);
+  // });
+        
+    google.maps.event.addListener(marker, 'click', function() {
+
+    infowindow.open(map, this)
+    });
+  }
+}
+
+function handleNoGeolocation(errorFlag) {
+  if (errorFlag) {
+    var content = 'Error: The Geolocation service failed.';
+  } else {
+    var content = 'Error: Your browser doesn\'t support geolocation.';
+  }
+}
+
+// jquery call to initalize () on load basically
+$(document).ready(function() {
+  initialize();
+});
+google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+
+<!-- this contains the map on the view -->
+<% flash.each do |key, value| %>
+    <h4><%= value %></h4>
+<% end %>
+
+
+
+<div class="feed_container">
+<!-- this contains the map on the view -->
+<div class="left_column">
+
+    <div class="feed_border">
+      <h4 class="left">the FOOTY™app</h4>
+      <h2 class="left">
+      LOCAL EVENTS.
+        </h2>
+      <!-- <hr class="small_line_break"> -->
+    </div>
+
+
+
+      <br>
+      <%= form_tag('users#map', method: "get") do %>
+        Search by
+        <%= select_tag "type", options_for_select(["name", "location", "age"]) %> :
+        <%= text_field_tag :query %>
+        <%= submit_tag "Search", "class" => "btn-primary" %>
+      <% end %>
+      <h6>Search by "name", "age", or "location".</h6>
+<hr class = "line-break" >
+
+
+  
+  <% if @events.count > 0 %>
+    <% @events.each do |event| %>
+<div class="feed_border">
+      <a class="inline" href="">
+        <%= cl_image_tag(event.image, :crop => :fill, class: "event_photo_tag") %>
+        <!-- <img src="http://skateparkoftampa.com/spot/productimages/1065mfgr.jpg" class= "company_profile_photo_tag" > -->
+      </a>
+      <h5 class ="left"><small>Event: </small><%= event.title %></h5>
+      <h5 class ="left"><small>Date: </small><%= event.date %></h5>
+      <h5 class ="left"><small>Location: </small><%= event.address %></h5>
+
+      <!-- <h5 class="left">This events FOOTY™</h5> -->
+      <spam>
+        <%= link_to "CLICK TO RSVP", event_path(id: event.id), :class => "rsvp_button" %>
+      </spam>
+      <spam>
+        <%= link_to "VIEW EVENT INFO", event_path(id: event.id), :class => "rsvp_button" %>
+      </spam>
+
+      <div class="center">
+        <%= cl_video_tag(event.video.to_s.split("/upload/").last.split(".").first, :video_codec=>"h264", :width=>493, :crop=>:scale, :controls => true, :poster => true, :fallback_content => "Your browser does not support HTML5 video tags")%>
+      </div>
+</div>
+    <% end %>
+
+<% else %>
+    <h2>No COMPANIES Exist</h2>
+<% end %>
+</div>
+</div>
+
+
+
+
+<!-- this is the "sign in or sign up forum" -->
+<div class="right_column">
+<% if current_user %>
+<!-- start of the right column -->
+    <ul id="topright_nav">
+    <li>
+     <%= cl_image_tag(current_user.image,:width => 133, :height => 133, :crop => :fill, class: "user_profile_photo_tag") %>
+          <small>Hello, </small>
+            
+            <%= link_to "#{current_user.name}", user_profile_path(current_user) %>
+            
+          <!-- <span class="glyphicon glyphicon-cog" aria-hidden="true">
+          </span> -->
+          
+          <ul> 
+            <li>
+                 <a><%= link_to "Your Profile", user_profile_path(current_user)%>
+                 </a>
+            </li> 
+            <li>
+                <a><%= link_to "Edit Account", edit_users_path(current_user) %>
+                </a>
+            </li>  
+            <li>
+                <a><%= link_to "Log out", destroy_session_path %>
+                </a>
+            </li>  
+          </ul>
+        </li>
+    </ul>
+    
+  <div class="feed_border">
+      <hr class = "small_line_break">
+        <h5 class="center">YOUR FOOTY™ DASHBOARD</h5>
+    <% if current_user %>
+      <%= link_to "POST FOOTY", new_post_path, class: "right_column_button"  %>
+      <%= link_to "CREATE EVENT", new_event_path, class: "right_column_button"  %>
+      <%= link_to "EDIT ACCOUNT", edit_users_path(current_user), class: "right_column_button"  %>
+      <%= link_to "LOG OUT", destroy_session_path, class: "right_column_button"  %>
+    <% else %>
+    <% end %>
+  </div>
+
+    <div class="feed_border">
+      <h3 class="center">
+        HAVING A SKATE EVENT?
+      </h3>
+      <h5 class="center">PUBLISH YOUR EVENT FOR FREE</h5>
+      <a class="submit-button-create, large_button" href="/events/new">
+       CLICK TO MAKE EVENT
+      </a>
+    </div>
+
+<% else %>
+
+<div class="feed_border">
+        <h4 class="left">theFOOTY™app</h4>
+        <h2 class="left">ALREADY A MEMBER?</h2>
+    </div>
+    
+    <div class = "feed_border">
+        <h5 class="center">SIGN IN TO YOUR FOOTY ACCOUNT</h5>
+    <%= form_for @user, url: create_session_path do |f| %>
+
+        <div class="form_group">
+        <%= f.email_field :email, :placeholder => 'EMAIL', class: "form-control" %>
+        </div>
+    
+        <div class="form_group"> 
+        <%= f.password_field :password, :placeholder => 'PASSWORD', class: "form-control" %>
+        </div>
+    
+        <%= f.submit "LOG IN", class: "submit-button-create, large_button" %>
+    <% end %>
+    <h5 class="center">NOT A MEMBER...?</h5>
+    <%= link_to "CREATE YOUR ACCOUNT", new_event_path, class: "submit-button-create, large_button"  %>
+    </div>
+
+
+<% end %>
+
+
+
+  <div class="feed_border">
+    <h4 class="left">the FOOTY™map</h4>
+    <div id="map-canvas">
+    </div>
+    <!-- <h6 class="black" id = "event_logo">COMPANIES</h6> -->
+    <h4><a  class="blue, right" href="">Search by Map here</a></h4>
+  </div>
+
+  <div class="feed_border">
+    <h4>VAN DOREN INVITATIONAL 2015</h4>
+    <hr class = "line-break">
+    <img alt="Icon" src="http://cdn.skateboarding.transworld.net/wp-content/blogs.dir/440/files/2015/08/Screen-Shot-2015-08-01-at-9.04.10-PM-600x383.png" />
+    <!-- if you change these links look at .feed_border h4 and .feed_border p before. Just incase you dont need it -->
+    <p class="black">Ben Hatchell is crowned champion for his second Van Doren Invitational title since winning the inaugural Van Doren Invitational in 2013.</p>
+    <p><a  class="blue" href="http://www.vansusopenofsurfing.com/2015-skate">Full Details...</a></p>
+  </div>
+
+
+
+  <div class="feed_border">
+  <h4>LANCE MOUNTAIN SIGNED FLIP BOARD GIVEAWAY</h4>
+  <hr class = "line-break">
+    <img alt="Icon" src="http://cdn.skateboarding.transworld.net/wp-content/blogs.dir/440/files/2015/07/TcoRy3lGp3E8_9OZTW53JzLaUN2rZw9Rr7msSiXxJ7qU75YPvgNwKr6fB2nWOmWBS2x9zeUdx6Gy1KLwHz5dKo0Dxvih-bmOaYEPNTYQoxYa6_Hcse-znq2wF2J5yWeLxV4h2nF8SY-i-XPf0GOcu3r45aytNHP4M4RYoKdCACTZAETxuGTrXf5b5okf2gjfbK16AwTFzOmZY6xMZdSqvbkAmWh-600x400.jpg" />
+    <!-- if you change these links look at .feed_border h4 and .feed_border p before. Just incase you dont need it -->
+    <p class="black">Want a signed Lance Mountain Flip board? Flip will be picking one winner each week for the next four weeks. Four winners total! Giveaway ends Friday, August 14, 2015</p>
+    <!-- <br> -->
+    <p><a  class="blue" href="https://www.facebook.com/nhsfunfactory?sk=app_190322544333196&ref=s">Click here to enter!</a></p>
+  </div>
+  <div class="feed_border">
+  <!-- if you change these links look at .feed_border h4 and .feed_border p before. Just incase you dont need it -->
+  <h4>"TRIALS AND TRIBULATIONS" VIDEO</h4>
+  <hr class = "line-break">
+  <img alt="Icon" src="http://cdn.skateboarding.transworld.net/wp-content/blogs.dir/440/files/2015/07/Screen-Shot-2015-07-28-at-4.41.23-PM-600x334.png" />
+  <p class="black">Sure, the video part is the fine tuned, final presentation, but sometimes the raw, behind-the-scenes footy tells an even better story. Clive is a savage.</p>
+  <p><a  class="blue" href="http://www.thrashermagazine.com/articles/videos/clive-dixons-trials-and-tribulations-video/">More details...</a></p>
+  <!-- <br> -->
+  </div>
+ 
+
+  <div class="feed_border">
+  <h4>Contact US</h4>
+  <h4>THE FOOTY™ APP</h4>
+  <p class="blue">garrettmckenzie@ymail.com</p>
+  <hr class = "line-break">
+  </div>
+<!-- this creates ruby data in the view that can be accessed by JS if the <script> is on same exact r
+</div>
+
+
+
+
