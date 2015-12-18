@@ -1,22 +1,27 @@
 class PostsController < ApplicationController
  	 # before_action :authorize
- 	def index
-        @posts = Post.all.order('created_at DESC')
-        @user = User.new
-        
-    end
+	def index
+      @posts = Post.all.order('created_at DESC')
+      @user = User.new
+      
+  end
 
-    def new
+  def home
+      @posts = Post.all.order('created_at DESC')
+      @user = User.new
+  end
+
+  def new
     	@post = Post.new
-        @event = Event.new
-    end
+      @event = Event.new
+  end
 
-    def show
-        @posts = Post.all.shuffle
-        @post = Post.find(params[:id])
-        @comment = Comment.new
-        @user = Post.find(params[:id])
-    end
+  def show
+      @posts = Post.all.shuffle
+      @post = Post.find(params[:id])
+      @comment = Comment.new
+      @user = Post.find(params[:id])
+  end
 
    def create
         @post = Post.new(post_params)
