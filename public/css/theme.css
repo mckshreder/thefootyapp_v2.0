@@ -857,6 +857,7 @@ body.btn-rounded .btn {
 }
 nav {
   background: #fff;
+  /*background-image: url("https://res.cloudinary.com/mckshreder/image/upload/c_crop,g_center,h_270,w_1868/v1441765874/Footy_main3_a8lsmq.png");*/
   -webkit-backface-visibility: hidden;
   max-width: 100%;
 }
