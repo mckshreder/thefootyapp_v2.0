@@ -96,28 +96,30 @@ $(document).ready(function() {
 
 
         <div class="main-container">
-            <section class="page-title page-title-4">
+            
+           <!--  <section class="page-title page-title-4">
                 <div class="container pd0">
                     <div class="row">
                         <div class="col-md-6">
-                            <h3 class="uppercase mb0">Blog Masonry</h3>
+                            <h3 class="uppercase mb0">The Footy App</h3>
                         </div>
                         <div class="col-md-6 text-right">
                             <ol class="breadcrumb breadcrumb-2">
                                 <li>
-                                    <a href="index.html">Home</a>
+                                    <a href="index.html">Skate</a>
                                 </li>
                                 <li>
-                                    <a href="#">Blog</a>
+                                    <a href="#">Film</a>
                                 </li>
-                                <li class="active">Masonry</li>
+                                <li class="active">Share</li>
                             </ol>
                         </div>
                     </div>
-                    <!--end of row-->
+                    end of row
                 </div>
-                <!--end of container-->
-            </section>
+                end of container
+            </section> -->
+
             <section class="bg-secondary pt32">
                 <div class="container p0">
                     <div class="col-md-9">
@@ -139,18 +141,20 @@ $(document).ready(function() {
                                 <%= cl_video_tag(post.video.to_s.split("/upload/").last.split(".").first, :class => "mb0", :video_codec=>"h264", :width=>493, :crop=>:scale, :controls => true, :poster => true, :fallback_content => "Your browser does not support HTML5 video tags")%>
                                 <div class="inner">
                                     <a href="#">
-                                        <h5 class="mb0"><%= link_to "'#{post.title}'", post_path(id: post.id), :class => "title-link, blue" %></h5>
+                                        <h5 class="mb8"><%= link_to "'#{post.title}'", post_path(id: post.id), :class => "title-link, blue" %></h5>
                                          <i class="ti-user"></i>
                                         <span>Posted by
                                             <%= link_to post.user.name ,  user_profile_path(post.user_id),:class => "option_link"%>
                                         </span>
-                                        <span class="inline-block mb16"><%= "  " + (remove_unwanted_words distance_of_time_in_words(Time.now, post.updated_at)) + " ago"  %></span>
+                                        <!-- <span class="glyphicon glyphicon-time" aria-hidden="false">
+                                        </span> -->
+                                        <span class="mb16"><%= "  " + (remove_unwanted_words distance_of_time_in_words(Time.now, post.updated_at)) + " ago"  %></span>
                                     </a>
                                      
                                         
-                                    <hr>
-                                    <p>
-                                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo.
+                                    <hr class="mb8">
+                                    <p> <%= post.body %>
+                                       <!--  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo. -->
                                     </p>
                                     
 
@@ -201,7 +205,7 @@ $(document).ready(function() {
                                         
                                     <hr>
                                     <p>
-                                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo.
+                                       <%= post.body %>
                                     </p>
                                     
 
@@ -374,21 +378,34 @@ $(document).ready(function() {
     </div>
 
 <% end %>
-              <div class="widget">
-                  <h6 class="title">Search Blog</h6>
 
+
+
+              
+              <div class="widget">
+                  <h6 class="title">About The App</h6>
+                  <hr>
+                  <p>
+                      Sed ut perspiciatis unde omnis iste natus error sit voluptatem antium doloremque laudantium, totam rem aperiam, eaque ipsa quae.
+                  </p>
+              </div>
+              <!--end of widget-->
+              
+              <div class="widget">
+                  <h6 class="title">Search All</h6>
                   <hr>
                   <form>
                       <input class="mb0" type="text" placeholder="Type Here" />
                   </form>
               </div>
-              
-              <div class="widget">
+              <!--end of widget-->
+
+              <!-- <div class="widget">
                <h6 class="title">Search by map</h6>
                             <hr>
               <div id="map-canvas">
                 </div>
-              </div>
+              </div> -->
                         <!--end of widget-->
                         
                             <div class="widget">
@@ -409,18 +426,7 @@ $(document).ready(function() {
                                           <%= link_to "Full Video", post_path(id: post.id), :class => "option_link" %>
                                     
                                     </li>
-                                    <li>
-                                        <a href="#">Spinning vinyl is oh so cool</a>
-                                        <span class="date">February
-                                            <span class="number">9, 2015</span>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <a href="#">Superior theme design by pros</a>
-                                        <span class="date">January
-                                            <span class="number">27, 2015</span>
-                                        </span>
-                                    </li>
+                                   
 
 <% end %>
                                 </ul>
@@ -428,15 +434,8 @@ $(document).ready(function() {
                             <!--end of widget-->
                         
 
-                        <div class="widget">
-                            <h6 class="title">About The Author</h6>
-                            <hr>
-                            <p>
-                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem antium doloremque laudantium, totam rem aperiam, eaque ipsa quae.
-                            </p>
-                        </div>
-                        <!--end of widget-->
-                        <div class="widget">
+                        
+                       <!--  <div class="widget">
                             <h6 class="title">Blog Categories</h6>
                             <hr>
                             <ul class="link-list">
@@ -453,36 +452,17 @@ $(document).ready(function() {
                                     <a href="#">Freelance</a>
                                 </li>
                             </ul>
-                        </div>
+                        </div> -->
                         <!--end of widget-->
+                       
                         <div class="widget">
-                            <h6 class="title">Recent Posts</h6>
-                            <hr>
-                            <ul class="link-list recent-posts">
-                                <li>
-                                    <a href="#">A simple image post for starters</a>
-                                    <span class="date">September 23, 2015</span>
-                                </li>
-                                <li>
-                                    <a href="#">An audio post for good measure</a>
-                                    <span class="date">September 19, 2015</span>
-                                </li>
-                                <li>
-                                    <a href="#">A thoguhtful blockquote post on life</a>
-                                    <span class="date">September 07, 2015</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <!--end of widget-->
-                        <div class="widget">
-                            <h6 class="title">Latest Updates</h6>
-                            <hr>
-                            <div class="twitter-feed">
-                                <div class="tweets-feed" data-widget-id="492085717044981760">
+                                <h6 class="title"> Freatured Instagram</h6>
+                                <hr>
+                                <div class="instafeed" data-user-name="breakfastlunchandpinners">
+                                    <ul></ul>
                                 </div>
                             </div>
-                        </div>
-                        <!--end of widget-->
+                            <!--end of widget-->
                     </div>
                     <!--end of sidebar-->
                 </div>
