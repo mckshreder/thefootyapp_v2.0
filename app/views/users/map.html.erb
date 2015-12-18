@@ -272,13 +272,21 @@ $(document).ready(function() {
                     <!--end of 9 col-->
                     <div class="col-md-3 hidden-sm">
                     <% if current_user %>
-    <ul id="topright_nav">
-    <li>
-     <!-- <%= cl_image_tag(current_user.image,:width => 133, :height => 133, :crop => :fill, class: "user_profile_photo_tag") %> -->
+
+    <!-- <ul id="topright_nav"> -->
+    <!-- <li> -->
+    <!-- <i class="icon-sm ti-user"></i> -->
+     <!-- <%= cl_image_tag(current_user.image,:width => 50, :height => 50, :crop => :fill, class: "user_profile_photo_tag") %> -->
           <small>Hello, </small>
             
-            <a><%= link_to "#{current_user.name}", user_profile_path(current_user) %>
-            </a>
+            <%= link_to "#{current_user.name}", user_profile_path(current_user), class: "title pb8" %>
+                      
+            <h5 class="title mb0 pt0">YOUR FOOTY™ DASHBOARD</h5>
+            
+                                <hr class="mb8">
+
+             <small>(select an option)</small>
+          
           <!-- <span class="glyphicon glyphicon-cog" aria-hidden="true">
           </span -->
           
@@ -296,17 +304,46 @@ $(document).ready(function() {
                 </a>
             </li>  
           </ul> -->
-        </li>
-    </ul>
+        <!-- </li> -->
+    <!-- </ul> -->
     
-    <div class="feed_border">
-      <hr class = "small_line_break">
-        <h5 class="center">YOUR FOOTY™ DASHBOARD</h5>
+    <div class="feed_border pt0">
+      <!-- <hr class = "small_line_break"> -->
+        
     <% if current_user %>
-      <%= link_to "POST FOOTY", new_post_path, class: "right_column_button"  %>
+    <div class="widget">
+                                <!-- <h6 class="title">Tags</h6> -->
+                                <ul class="tags">
+                                    <li>
+                                        <%= link_to "POST FOOTY", new_post_path, class: "btn btn-sm"  %>
+                                    </li>
+                                    <li>
+                                      <%= link_to "CREATE EVENT", new_event_path, class: "btn btn-sm"  %>
+
+                                    </li>
+                                    <li>
+                                         <%= link_to "EDIT ACCOUNT", edit_users_path(current_user), class: "btn btn-sm"  %>
+                                    </li>
+                                    <li>
+                                        <%= link_to "LOG OUT", destroy_session_path, class: "btn btn-sm"  %>
+                                    </li>
+                                    <!-- <li>
+                                        <%= link_to "Your Profile", user_profile_path(current_user), class: "btn btn-sm"%>
+                                    </li> -->
+                                   <!--  <li>
+                                        <a class="btn btn-sm" href="#">Coffee</a>
+                                    </li>
+                                    <li>
+                                        <a class="btn btn-sm" href="#">Melons</a>
+                                    </li> -->
+                                </ul>
+                            </div>
+                            <!--end of widget-->
+
+      <!--<%= link_to "POST FOOTY", new_post_path, class: "right_column_button"  %>
       <%= link_to "CREATE EVENT", new_event_path, class: "right_column_button"  %>
       <%= link_to "EDIT ACCOUNT", edit_users_path(current_user), class: "right_column_button"  %>
-      <%= link_to "LOG OUT", destroy_session_path, class: "right_column_button"  %>
+      <%= link_to "LOG OUT", destroy_session_path, class: "right_column_button"  %>-->
     <% else %>
     <% end %>
     </div>
@@ -337,16 +374,21 @@ $(document).ready(function() {
     </div>
 
 <% end %>
-<div id="map-canvas">
-  </div>
-                        <div class="widget">
-                            <h6 class="title">Search Blog</h6>
+              <div class="widget">
+                  <h6 class="title">Search Blog</h6>
 
+                  <hr>
+                  <form>
+                      <input class="mb0" type="text" placeholder="Type Here" />
+                  </form>
+              </div>
+              
+              <div class="widget">
+               <h6 class="title">Search by map</h6>
                             <hr>
-                            <form>
-                                <input class="mb0" type="text" placeholder="Type Here" />
-                            </form>
-                        </div>
+              <div id="map-canvas">
+                </div>
+              </div>
                         <!--end of widget-->
                         
                             <div class="widget">
