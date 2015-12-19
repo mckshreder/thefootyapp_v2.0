@@ -1,4 +1,5 @@
-    
+<%= render partial: "partials/main_nav" %>
+  
 
 <script>
 //= require jquery.turbolinks
@@ -119,8 +120,9 @@ $(document).ready(function() {
                 </div>
                 end of container
             </section> -->
+            
 
-            <section class="bg-secondary pt32">
+            <section class="bg-secondary pt16">
                 <div class="container p0">
                     <div class="col-md-9">
                         <div class="row masonry-loader">
@@ -128,7 +130,32 @@ $(document).ready(function() {
                                 <div class="spinner"></div>
                             </div>
                         </div>
+                        <section class="cover fullscreen image-slider slider-arrow-controls controls-inside parallax mb16">
+                            <ul class="slides">
+                                <li class="overlay image-bg bg-light">
+                                    <div class="background-image-holder">
+                                        <img alt="image" class="background-image" src="../img/intro1.jpg" />
+                                    </div>
+                                    <div class="container v-align-transform">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-8">
+                                                <h1 class="mb40 mb-xs-16 large">Welcome to theFOOTY™app</h1>
+                                                <h6 class="uppercase mb16">A complete skateboard social network</h6>
+                                                <p class="lead mb40">
+                                                    Publish beautiful, contemporary skateboarding articles in just moments
+                                                    <br />with Foundry Post Builder.
+                                                </p>
+                                                <a class="btn btn-lg" href="/posts">Start Exploring</a>
+                                            </div>
+                                        </div>
+                                        <!--end of row-->
+                                    </div>
+                                    <!--end of container-->
+                                </li>
+                            </ul>
+                        </section>
                         <div class="row masonry masonryFlyIn mb40">
+                        
                             
                             <!--end of snippet-->
 
@@ -159,7 +186,9 @@ $(document).ready(function() {
                                     
 
                                     
-                                            <%= link_to "Read More",  user_profile_path(post.user_id),:class => "btn btn-sm" %>
+                                            <!--<%= link_to "Read More",  user_profile_path(post.user_id),:class => "btn btn-sm" %>-->
+                                            <%= link_to "Read More", post_path(id: post.id), :class => "btn btn-sm" %>
+
                                       
                                       <!--<%= link_to "#{post.user.name.split.first}'s "+"Profile",  user_profile_path(post.user_id), :class => "option_link" %>
                                       <%= "  &  "%>
@@ -237,6 +266,7 @@ $(document).ready(function() {
     <h2>No Posts Exist</h2>
 <% end %>
                            
+
                             <!--end of snippet-->
                         </div>
                         <!--end of row-->
