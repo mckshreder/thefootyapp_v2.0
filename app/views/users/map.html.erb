@@ -251,28 +251,32 @@ $(document).ready(function() {
     <% @posts.each do |post| %>
 
 
-                            <div class="col-sm-6 post-snippet masonry-item">
+                            <div class="col-sm-6 post-snippet masonry-item p0 mb5">
                                 
-                                <%= cl_video_tag(post.video.to_s.split("/upload/").last.split(".").first, :class => "mb0", :video_codec=>"h264", :width=>493, :crop=>:scale, :controls => true, :poster => true, :fallback_content => "Your browser does not support HTML5 video tags")%>
-                                <div class="inner">
+                                <%= cl_video_tag(post.video.to_s.split("/upload/").last.split(".").first, :class => "mb_16 pb0", :video_codec=>"h264", :width=>493, :crop=>:scale, :controls => true, :fallback_content => "Your browser does not support HTML5 video tags")%>
+                                <div class="inner border-sm">
                                     <a href="#">
-                                        <h5 class="mb0"><%= link_to "'#{post.title}'", post_path(id: post.id), :class => "title-link, blue" %></h5>
+                                        <h5 class="mb8"><%= link_to "'#{post.title}'", post_path(id: post.id), :class => "title-link, blue" %></h5>
                                          <i class="ti-user"></i>
                                         <span>Posted by
                                             <%= link_to post.user.name ,  user_profile_path(post.user_id),:class => "option_link"%>
                                         </span>
-                                        <span class="inline-block mb16"><%= "  " + (remove_unwanted_words distance_of_time_in_words(Time.now, post.updated_at)) + " ago"  %></span>
+                                        <!-- <span class="glyphicon glyphicon-time" aria-hidden="false">
+                                        </span> -->
+                                        <span class="mb16"><%= "  " + (remove_unwanted_words distance_of_time_in_words(Time.now, post.updated_at)) + " ago"  %></span>
                                     </a>
                                      
                                         
-                                    <hr>
-                                    <p>
-                                       <%= post.body %>
+                                    <hr class="mb5">
+                                    <p class="mb5"> <%= post.body %>
+                                       <!--  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo. -->
                                     </p>
                                     
 
                                     
-                                            <%= link_to "Read More",  user_profile_path(post.user_id),:class => "btn btn-sm" %>
+                                            <!--<%= link_to "Read More",  user_profile_path(post.user_id),:class => "btn btn-sm" %>-->
+                                            <%= link_to "Read More", post_path(id: post.id), :class => "btn btn-sm" %>
+
                                       
                                       <!--<%= link_to "#{post.user.name.split.first}'s "+"Profile",  user_profile_path(post.user_id), :class => "option_link" %>
                                       <%= "  &  "%>
