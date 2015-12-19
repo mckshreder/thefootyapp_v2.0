@@ -126,19 +126,29 @@ $(document).ready(function() {
             <section class="bg-secondary pt0">
                 <div class="container p0">
                 
-                        <section class="page-title page-title-3 image-bg overlay mb0 pbs15">
+                        <section class="page-title page-title-3 image-bg overlay mb0 mbs5">
                             <div class="background-image-holder">
                                 <img alt="Background Image" class="background-image" src="http://res.cloudinary.com/mckshreder/image/upload/q_100/v1448362449/kevin_smith_2_150px-3951_h7gv2s.jpg" />
                             </div>
                             <div class="container">
                                 <div class="row">
                                     <div class="col-sm-12 text-center">
-                                        <h3 class="uppercase mb0">Footy</h3>
+                                        <h1 class="uppercase mb0">Footy</h1>
                                     </div>
                                 </div>
                                 <!--end of row-->
                             </div>
                             <!--end of container-->
+                              <ol class="breadcrumb breadcrumb-2">
+                                  <li>
+                                      <a href="#">Clock Footy</a>
+                                  </li>
+                                  <li>
+                                      <a href="#">Publish an Article</a>
+                                  </li>
+                                  <li class="active">Share your work!</li>
+                              </ol>
+
                         </section>
                   
 
@@ -186,7 +196,7 @@ $(document).ready(function() {
     <% @posts.each do |post| %>
 
 
-                            <div class="col-sm-6 post-snippet masonry-item p0 mb0">
+                            <div class="col-sm-6 post-snippet masonry-item p0 mb5">
                                 
                                 <%= cl_video_tag(post.video.to_s.split("/upload/").last.split(".").first, :class => "mb_16 pb0", :video_codec=>"h264", :width=>493, :crop=>:scale, :controls => true, :poster => true, :fallback_content => "Your browser does not support HTML5 video tags")%>
                                 <div class="inner border-sm">
@@ -327,8 +337,8 @@ $(document).ready(function() {
                         <!--end of row-->
                     </div>
                     <!--end of 9 col-->
-                    <div class="col-md-3 hidden-sm">
-                    <% if current_user %>
+<div class="col-md-3 hidden-sm pt8">
+<% if current_user %>
 
     <!-- <ul id="topright_nav"> -->
     <!-- <li> -->
@@ -408,13 +418,13 @@ $(document).ready(function() {
 <% else %>
 
   <div class="feed_border">
-        <h5 class="text-center mb8 pt8">theFOOTY™app</h5>
+        <h5 class="text-left mb8">theFOOTY™app</h5>
         <hr class="">
-        <h4 class="text-left pb0">ALREADY A MEMBER?</h4>
+        <h5 class="text-left pb0 mb8">ALREADY A MEMBER?</h5>
     </div>
     
     <div class = "feed_border">
-        <h5 class="center pb8">SIGN IN TO YOUR FOOTY ACCOUNT</h5>
+        <h6 class="center pb0">SIGN IN TO YOUR FOOTY ACCOUNT</h6>
     <%= form_for @user, url: create_session_path do |f| %>
 
         <div class="form_group">
@@ -428,7 +438,7 @@ $(document).ready(function() {
         <%= f.submit "LOG IN", class: "submit-button-create, large_button" %>
     <% end %>
     <h5 class="center">NOT A MEMBER...?</h5>
-    <%= link_to "CREATE YOUR ACCOUNT", new_event_path, class: "submit-button-create, large_button"  %>
+    <%= link_to "CREATE YOUR ACCOUNT", new_event_path, class: "btn btn-large"  %>
     </div>
 
 <% end %>
