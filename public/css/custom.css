@@ -7,3 +7,34 @@
    padding: 0;
    /*margin-bottom: -1.1%;*/
  }
+
+
+ /*feed border*/
+
+ .border-sm{
+ 	border: 0.8px solid #ccc !important;
+ }
+
+/* .col-sm-6{
+ 	padding-left: 10px;
+ 	 	padding-right: 10px;
+
+ }*/
+
+/*translates to pading both sides*/
+ .pbs15{
+ 	padding-left: 10px !important;
+ 	padding-right: 10px !important;
+
+ }
+
+
+
+.mb5{
+	margin-bottom: 5px !important;
+}
+/*this is the negatives*/
+ .mb_16{
+ 	margin-bottom: -16px !important;
+ }
+

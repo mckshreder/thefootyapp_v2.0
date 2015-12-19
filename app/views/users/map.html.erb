@@ -121,16 +121,34 @@ $(document).ready(function() {
                 end of container
             </section> -->
             
+            
 
-            <section class="bg-secondary pt16">
+            <section class="bg-secondary pt0">
                 <div class="container p0">
-                    <div class="col-md-9">
+                
+                        <section class="page-title page-title-3 image-bg overlay mb0 pbs15">
+                            <div class="background-image-holder">
+                                <img alt="Background Image" class="background-image" src="http://res.cloudinary.com/mckshreder/image/upload/q_100/v1448362449/kevin_smith_2_150px-3951_h7gv2s.jpg" />
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                        <h3 class="uppercase mb0">Footy</h3>
+                                    </div>
+                                </div>
+                                <!--end of row-->
+                            </div>
+                            <!--end of container-->
+                        </section>
+                  
+
+                    <div class="col-md-9 pt8">
                         <div class="row masonry-loader">
                             <div class="col-sm-12 text-center">
                                 <div class="spinner"></div>
                             </div>
                         </div>
-                        <section class="cover fullscreen image-slider slider-arrow-controls controls-inside parallax mb16">
+                        <!-- <section class="cover fullscreen image-slider slider-arrow-controls controls-inside parallax mb16">
                             <ul class="slides">
                                 <li class="overlay image-bg bg-light">
                                     <div class="background-image-holder">
@@ -148,12 +166,17 @@ $(document).ready(function() {
                                                 <a class="btn btn-lg" href="/posts">Start Exploring</a>
                                             </div>
                                         </div>
-                                        <!--end of row-->
+                                        end of row
                                     </div>
-                                    <!--end of container-->
+                                    end of container
                                 </li>
                             </ul>
-                        </section>
+                        </section> -->
+
+                        
+
+                        
+
                         <div class="row masonry masonryFlyIn mb40">
                         
                             
@@ -163,10 +186,10 @@ $(document).ready(function() {
     <% @posts.each do |post| %>
 
 
-                            <div class="col-sm-6 post-snippet masonry-item">
+                            <div class="col-sm-6 post-snippet masonry-item p0 mb0">
                                 
-                                <%= cl_video_tag(post.video.to_s.split("/upload/").last.split(".").first, :class => "mb0", :video_codec=>"h264", :width=>493, :crop=>:scale, :controls => true, :poster => true, :fallback_content => "Your browser does not support HTML5 video tags")%>
-                                <div class="inner">
+                                <%= cl_video_tag(post.video.to_s.split("/upload/").last.split(".").first, :class => "mb_16 pb0", :video_codec=>"h264", :width=>493, :crop=>:scale, :controls => true, :poster => true, :fallback_content => "Your browser does not support HTML5 video tags")%>
+                                <div class="inner border-sm">
                                     <a href="#">
                                         <h5 class="mb8"><%= link_to "'#{post.title}'", post_path(id: post.id), :class => "title-link, blue" %></h5>
                                          <i class="ti-user"></i>
@@ -179,8 +202,8 @@ $(document).ready(function() {
                                     </a>
                                      
                                         
-                                    <hr class="mb8">
-                                    <p> <%= post.body %>
+                                    <hr class="mb5">
+                                    <p class="mb5"> <%= post.body %>
                                        <!--  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo. -->
                                     </p>
                                     
@@ -341,7 +364,7 @@ $(document).ready(function() {
         <!-- </li> -->
     <!-- </ul> -->
     
-    <div class="feed_border pt0">
+    <div class="feed_border pt8">
       <!-- <hr class = "small_line_break"> -->
         
     <% if current_user %>
@@ -385,12 +408,13 @@ $(document).ready(function() {
 <% else %>
 
   <div class="feed_border">
-        <h4 class="left">theFOOTY™app</h4>
-        <h2 class="left">ALREADY A MEMBER?</h2>
+        <h5 class="text-center mb8 pt8">theFOOTY™app</h5>
+        <hr class="">
+        <h4 class="text-left pb0">ALREADY A MEMBER?</h4>
     </div>
     
     <div class = "feed_border">
-        <h5 class="center">SIGN IN TO YOUR FOOTY ACCOUNT</h5>
+        <h5 class="center pb8">SIGN IN TO YOUR FOOTY ACCOUNT</h5>
     <%= form_for @user, url: create_session_path do |f| %>
 
         <div class="form_group">
