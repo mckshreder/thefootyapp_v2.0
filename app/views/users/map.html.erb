@@ -229,10 +229,10 @@ $(document).ready(function() {
                                 <%= cl_video_tag(post.video.to_s.split("/upload/").last.split(".").first, :class => "mb_16 pb0", :video_codec=>"h264", :width=>493, :crop=>:scale, :controls => true, :fallback_content => "Your browser does not support HTML5 video tags")%>
                                 <div class="inner border-sm">
                                     <a href="#">
-                                        <h5 class="mb8"><%= link_to "'#{post.title}'", post_path(id: post.id), :class => "title-link, blue" %></h5>
+                                        <h5 class="mb8"><%= link_to "'#{post.title}'", post_path(id: post.id), :class => "title-link, blue", 'data-turbolinks-track' => true %></h5>
                                          <i class="ti-user"></i>
                                         <span>Posted by
-                                            <%= link_to post.user.name ,  user_profile_path(post.user_id),:class => "option_link"%>
+                                            <%= link_to post.user.name ,  user_profile_path(post.user_id),:class => "option_link", 'data-turbolinks-track' => true%>
                                         </span>
                                         <!-- <span class="glyphicon glyphicon-time" aria-hidden="false">
                                         </span> -->
