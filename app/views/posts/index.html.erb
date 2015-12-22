@@ -1,3 +1,6 @@
+<%= render partial: "partials/main_nav" %>
+  
+
 <script>
 //= require jquery.turbolinks
 
@@ -85,227 +88,510 @@ $(document).ready(function() {
 	initialize();
 });
 </script>
-<% flash.each do |key, value| %>
-    <h4><%= value %></h4>
-<% end %>
 
-<div class="feed_container">
-<div class="left_column">
-	<div class="feed_border">
-      <h4 class="left">the FOOTY™app</h4>
-      <h2 class="left">
-      TODAY'S FEATURED SKATERS.
-        </h2>
-    </div>
-	
-	<% if @posts.count > 0 %>
+
+
+
+        <div class="main-container">
+            
+           <!--  <section class="page-title page-title-4">
+                <div class="container pd0">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="uppercase mb0">The Footy App</h3>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <ol class="breadcrumb breadcrumb-2">
+                                <li>
+                                    <a href="index.html">Skate</a>
+                                </li>
+                                <li>
+                                    <a href="#">Film</a>
+                                </li>
+                                <li class="active">Share</li>
+                            </ol>
+                        </div>
+                    </div>
+                    end of row
+                </div>
+                end of container
+            </section> -->
+            
+            
+
+            <section class="bg-secondary pt0">
+                <div class="container p0">
+                
+                        <section class="page-title page-title-3 image-bg overlay mb0 mbs5">
+                            <div class="background-image-holder">
+                                <img alt="Background Image" class="background-image" src="http://res.cloudinary.com/mckshreder/image/upload/q_100/v1448362449/kevin_smith_2_150px-3951_h7gv2s.jpg" />
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                        <h2 class="uppercase mb0">Footy</h2>
+                                        <p class="lead mb0">Skate, Film, Share</p>
+                                        <!-- this contains the map on the view -->
+										<% flash.each do |key, value| %>
+										    <h4 class="pt8"><%= value %></h4>
+										<% end %>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <!--end of container-->
+                              <ol class="breadcrumb breadcrumb-2">
+                                  <li>
+                                      <a href="#">Home</a>
+                                  </li>
+                                  <li>
+                                      <a href="#">Footy</a>
+                                  </li>
+                                  <li class="active">All Footy</li>
+                              </ol>
+
+                        </section>
+                  
+
+                    <div class="col-md-9 pt8">
+
+                    <!-- <div class="row">
+                        <div class="col-md-4 col-sm-4 masonry col-xs-12">
+                            <div class="select-option">
+                                <i class="ti-angle-down"></i>
+                                <select>
+                                    <option selected value="Default">Sort By</option>
+                                    <option value="Small">Highest Price</option>
+                                    <option value="Medium">Lowest Price</option>
+                                    <option value="Larger">Newest Items</option>
+                                </select>
+                            </div>
+                            end select
+                        </div>
+                        <div class="col-md-8 masonry text-right">
+                            <span class="input-lh">Displaying 8 of 8 results</span>
+                        </div>
+                    </div>
+                end of row
+
+                    <div class="row pb0">
+                      <div class="col-sm-12 pb0">
+                          <br>
+                      </div>
+                    </div> -->
+
+
+                        <div class="row masonry-loader">
+                            <div class="col-sm-12 text-center">
+                                <div class="spinner"></div>
+                            </div>
+                        </div>
+                        <!-- <section class="cover fullscreen image-slider slider-arrow-controls controls-inside parallax mb16">
+                            <ul class="slides">
+                                <li class="overlay image-bg bg-light">
+                                    <div class="background-image-holder">
+                                        <img alt="image" class="background-image" src="../img/intro1.jpg" />
+                                    </div>
+                                    <div class="container v-align-transform">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-8">
+                                                <h1 class="mb40 mb-xs-16 large">Welcome to theFOOTY™app</h1>
+                                                <h6 class="uppercase mb16">A complete skateboard social network</h6>
+                                                <p class="lead mb40">
+                                                    Publish beautiful, contemporary skateboarding articles in just moments
+                                                    <br />with Foundry Post Builder.
+                                                </p>
+                                                <a class="btn btn-lg" href="/posts">Start Exploring</a>
+                                            </div>
+                                        </div>
+                                        end of row
+                                    </div>
+                                    end of container
+                                </li>
+                            </ul>
+                        </section> -->
+
+                        
+
+                        
+
+                        <div class="row masonry masonryFlyIn mb40">
+                        
+                            
+                            <!--end of snippet-->
+
+<% if @posts.count > 0 %>
     <% @posts.each do |post| %>
-      
-    <div class = "large_feed">
 
-            <div class="video_top_info">
-            <%= cl_image_tag(post.user.image,:width => 133, :height => 133, :crop => :fill, class: "user_profile_photo_tag") %>
-            <%= "  " %><%= post.user.name %>
 
-            <div>
-            	<%= "| posted:" %>
-	            <span class="glyphicon glyphicon-time" aria-hidden="false">
-		        </span>
-		        <%= "  " + (remove_unwanted_words distance_of_time_in_words(Time.now, post.updated_at)) + " ago"  %>
-		    </div>
-            </div> 
+                            <div class="col-sm-6 post-snippet masonry-item p0 mb5">
+                                
+                                <%= cl_video_tag(post.video.to_s.split("/upload/").last.split(".").first, :class => "mb_16 pb0", :video_codec=>"h264", :width=>493, :crop=>:scale, :controls => true, :fallback_content => "Your browser does not support HTML5 video tags")%>
+                                <div class="inner border-sm">
+                                    <a href="#">
+                                        <h5 class="mb8"><%= link_to "'#{post.title}'", post_path(id: post.id), :class => "title-link, blue" %></h5>
+                                         <i class="ti-user"></i>
+                                        <span>Posted by
+                                            <%= link_to post.user.name ,  user_profile_path(post.user_id),:class => "option_link"%>
+                                        </span>
+                                        <!-- <span class="glyphicon glyphicon-time" aria-hidden="false">
+                                        </span> -->
+                                        <span class="mb16"><%= "  " + (remove_unwanted_words distance_of_time_in_words(Time.now, post.updated_at)) + " ago"  %></span>
+                                    </a>
+                                     
+                                        
+                                    <hr class="mb5">
+                                    <p class="mb5"> <%= post.body %>
+                                       <!--  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo. -->
+                                    </p>
+                                    
 
-        <div class="center">
-        	<%= cl_video_tag(post.video.to_s.split("/upload/").last.split(".").first, :video_codec=>"h264", :width=>493, :crop=>:scale, :controls => true, :poster => true, :fallback_content => "Your browser does not support HTML5 video tags")%>
-      	</div>
-		
-		<div class="video-poster, info-on-feed">
-	
-          	<div class="video-poster">
-	        <div>
-          	<xsmall>Video title:</xsmall>
-				<%= link_to "'#{post.title}'", post_path(id: post.id), :class => "title-link, blue" %>
-	        </div>
-	        </div>
+                                    
+                                            <!--<%= link_to "Read More",  user_profile_path(post.user_id),:class => "btn btn-sm" %>-->
+                                            <%= link_to "Read More", post_path(id: post.id), :class => "btn btn-sm" %>
 
-			<hr class = "small_line_break">
+                                      
+                                      <!--<%= link_to "#{post.user.name.split.first}'s "+"Profile",  user_profile_path(post.user_id), :class => "option_link" %>
+                                      <%= "  &  "%>
+                                      <%= link_to "Full Video", post_path(id: post.id), :class => "option_link" %>-->
+                                    
+                                    <ul class="tags pull-right">
+                                        <li>
+                                            <a class="btn btn-sm btn-icon" href="#">
+                                                <i class="ti-twitter-alt"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="btn btn-sm btn-icon" href="#">
+                                                <i class="ti-facebook"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
 
-	        <xsmall>
-	        	<%="Skater Info:"%>
-	        </xsmall> 
-	        
-	        <div class = "info-on-feed, center">
-	                <p>Name: </p>
-	                <p><%= link_to post.user.name ,  user_profile_path(post.user_id),:class => "option_link"%></p>
-	        </div>  	
-	                <p> Age: <%= post.user.age%></p>
-	                <p> | City: <%= post.address%></p>
-			<!-- <div class = "video-poster">
-		         <%= link_to post.user.name ,  user_profile_path(post.user_id), :class => "large_posts_title" %>
-		    </div> -->
-		
-			<div>
-			<p>
-				Options:
-			</p>
-	        	<%= link_to "#{post.user.name.split.first}'s "+"Profile",  user_profile_path(post.user_id), :class => "option_link" %>
-	        	<%= "  &  "%>
-	        	<%= link_to "Full Video", post_path(id: post.id), :class => "option_link" %>
-	      	</div>
-		</div> 
+                                <% end %>
 
-          <br>
-
-        </div>
-        
-    <% end %>
-    </div>
-</div>  
-  
 <% else %>
     <h2>No Posts Exist</h2>
 <% end %>
+<% if @posts.count > 0 %>
+    <% @posts.each do |post| %>
 
-</div>
 
-<!-- begining of the right side column on the home page -->
-<div class="right_column">
-<!-- this is the "sign in or sign up forum" -->
-	<% if current_user %>
-		<ul id="topright_nav">
-		<li>
-		    <%= cl_image_tag(current_user.image,:width => 133, :height => 133, :crop => :fill, class: "user_profile_photo_tag") %>
-			    <small>Hello, </small>
-			      
-			      <a><%= link_to "#{current_user.name}", user_profile_path(current_user) %>
-			      </a>
-				 <!--  <span class="glyphicon glyphicon-cog" aria-hidden="true">
-				  </span> -->
-		      
-		      <ul> 
-		        <li>
-		             <a><%= link_to "Your Profile", user_profile_path(current_user)%>
-		             </a>
-		        </li> 
-		        <li>
-		            <a><%= link_to "Edit Account", edit_users_path(current_user) %>
-		            </a>
-		        </li>  
-		        <li>
-		            <a><%= link_to "Log out", destroy_session_path %>
-		            </a>
-		        </li>  
-		      </ul>
-		    </li>
-		</ul>
-	<div class="feed_border">
-      <hr class = "small_line_break">
-        <h5 class="center">YOUR FOOTY™ DASHBOARD</h5>
+                            <div class="col-sm-6 post-snippet masonry-item p0 mb5">
+                                
+                                <%= cl_video_tag(post.video.to_s.split("/upload/").last.split(".").first, :class => "mb_16 pb0", :video_codec=>"h264", :width=>493, :crop=>:scale, :controls => true, :fallback_content => "Your browser does not support HTML5 video tags")%>
+                                <div class="inner border-sm">
+                                    <a href="#">
+                                        <h5 class="mb8"><%= link_to "'#{post.title}'", post_path(id: post.id), :class => "title-link, blue" %></h5>
+                                         <i class="ti-user"></i>
+                                        <span>Posted by
+                                            <%= link_to post.user.name ,  user_profile_path(post.user_id),:class => "option_link"%>
+                                        </span>
+                                        <!-- <span class="glyphicon glyphicon-time" aria-hidden="false">
+                                        </span> -->
+                                        <span class="mb16"><%= "  " + (remove_unwanted_words distance_of_time_in_words(Time.now, post.updated_at)) + " ago"  %></span>
+                                    </a>
+                                     
+                                        
+                                    <hr class="mb5">
+                                    <p class="mb5"> <%= post.body %>
+                                       <!--  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo. -->
+                                    </p>
+                                    
+
+                                    
+                                            <!--<%= link_to "Read More",  user_profile_path(post.user_id),:class => "btn btn-sm" %>-->
+                                            <%= link_to "Read More", post_path(id: post.id), :class => "btn btn-sm" %>
+
+                                      
+                                      <!--<%= link_to "#{post.user.name.split.first}'s "+"Profile",  user_profile_path(post.user_id), :class => "option_link" %>
+                                      <%= "  &  "%>
+                                      <%= link_to "Full Video", post_path(id: post.id), :class => "option_link" %>-->
+                                    
+                                    <ul class="tags pull-right">
+                                        <li>
+                                            <a class="btn btn-sm btn-icon" href="#">
+                                                <i class="ti-twitter-alt"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="btn btn-sm btn-icon" href="#">
+                                                <i class="ti-facebook"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                                <% end %>
+
+<% else %>
+    <h2>No Posts Exist</h2>
+<% end %>
+                           
+
+                            <!--end of snippet-->
+                        </div>
+                        <!--end of row-->
+                        <div class="row">
+                            <div class="text-center">
+                                <ul class="pagination">
+                                    <li>
+                                        <a href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="#">1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">2</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">3</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">4</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">5</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--end of row-->
+                    </div>
+                    <!--end of 9 col-->
+<div class="col-md-3 hidden-sm pt8">
+<% if current_user %>
+
+    <!-- <ul id="topright_nav"> -->
+    <!-- <li> -->
+    <!-- <i class="icon-sm ti-user"></i> -->
+     <!-- <%= cl_image_tag(current_user.image,:width => 50, :height => 50, :crop => :fill, class: "user_profile_photo_tag") %> -->
+          <small>Hello, </small>
+            
+            <%= link_to "#{current_user.name}", user_profile_path(current_user), class: "title pb8" %>
+                      
+            <h5 class="title mb0 pt0">YOUR FOOTY™ DASHBOARD</h5>
+            
+                                <hr class="mb8">
+
+             <small>(select an option)</small>
+          
+          <!-- <span class="glyphicon glyphicon-cog" aria-hidden="true">
+          </span -->
+          
+          <!-- <ul> 
+            <li>
+                 <a><%= link_to "Your Profile", user_profile_path(current_user)%>
+                 </a>
+            </li> 
+            <li>
+                <a><%= link_to "Edit Account", edit_users_path(current_user) %>
+                </a>
+            </li>  
+            <li>
+                <a><%= link_to "Log out", destroy_session_path %>
+                </a>
+            </li>  
+          </ul> -->
+        <!-- </li> -->
+    <!-- </ul> -->
+    
+    <div class="feed_border pt8">
+      <!-- <hr class = "small_line_break"> -->
+        
     <% if current_user %>
-      <%= link_to "POST FOOTY", new_post_path, class: "right_column_button"  %>
+    <div class="widget">
+                                <!-- <h6 class="title">Tags</h6> -->
+                                <ul class="tags">
+                                    <li>
+                                        <%= link_to "POST FOOTY", new_post_path, class: "btn btn-sm"  %>
+                                    </li>
+                                    <li>
+                                      <%= link_to "CREATE EVENT", new_event_path, class: "btn btn-sm"  %>
+
+                                    </li>
+                                    <li>
+                                         <%= link_to "EDIT ACCOUNT", edit_users_path(current_user), class: "btn btn-sm"  %>
+                                    </li>
+                                    <li>
+                                        <%= link_to "LOG OUT", destroy_session_path, class: "btn btn-sm"  %>
+                                    </li>
+                                    <!-- <li>
+                                        <%= link_to "Your Profile", user_profile_path(current_user), class: "btn btn-sm"%>
+                                    </li> -->
+                                   <!--  <li>
+                                        <a class="btn btn-sm" href="#">Coffee</a>
+                                    </li>
+                                    <li>
+                                        <a class="btn btn-sm" href="#">Melons</a>
+                                    </li> -->
+                                </ul>
+                            </div>
+                            <!--end of widget-->
+
+      <!--<%= link_to "POST FOOTY", new_post_path, class: "right_column_button"  %>
       <%= link_to "CREATE EVENT", new_event_path, class: "right_column_button"  %>
       <%= link_to "EDIT ACCOUNT", edit_users_path(current_user), class: "right_column_button"  %>
-      <%= link_to "LOG OUT", destroy_session_path, class: "right_column_button"  %>
+      <%= link_to "LOG OUT", destroy_session_path, class: "right_column_button"  %>-->
     <% else %>
     <% end %>
     </div>
 
-	<% else %>
-	
-	<div class="feed_border">
-        <h4 class="left">theFOOTY™app</h4>
-        <h2 class="left">ALREADY A MEMBER?</h2>
+<% else %>
+
+  <div class="feed_border">
+        <h5 class="text-left mb8">theFOOTY™app</h5>
+        <hr class="">
+        <h5 class="text-left pb0 mb8">ALREADY A MEMBER?</h5>
     </div>
     
     <div class = "feed_border">
-        <h5 class="center">SIGN IN TO YOUR FOOTY ACCOUNT</h5>
-    <%= form_for @user, url: create_session_path do |f| %>
+        <h6 class="center pb0">SIGN IN TO YOUR FOOTY ACCOUNT</h6>
+		    <%= form_for @user, url: create_session_path do |f| %>
 
-        <div class="form_group">
-        <%= f.email_field :email, :placeholder => 'EMAIL', class: "form-control" %>
-        </div>
-    
-        <div class="form_group"> 
-        <%= f.password_field :password, :placeholder => 'PASSWORD', class: "form-control" %>
-        </div>
-    
-        <%= f.submit "LOG IN", class: "submit-button-create, large_button" %>
-    <% end %>
+		        <div class="form_group">
+		        <%= f.email_field :email, :placeholder => 'EMAIL', class: "form-control", type: "text" %>
+		        </div>
+		    
+		        <div class="form_group"> 
+		        <%= f.password_field :password, :placeholder => 'PASSWORD', class: "form-control" %>
+		        </div>
+		    
+		        <%= f.submit "LOG IN", class: "submit-button-create, large_button" %>
+		    <% end %>
     <h5 class="center">NOT A MEMBER...?</h5>
-    <%= link_to "CREATE YOUR ACCOUNT", new_event_path, class: "submit-button-create, large_button"  %>
+    <%= link_to "CREATE YOUR ACCOUNT", new_user_path, class: "btn btn-large"  %>
     </div>
 
-<% end %> 
-
-
-		<div class="feed_border">
-	    <h4 class="left">theFOOTY™map</h4>
-		<div id="map-canvas">
-		</div>
-      
-
-		  
-		<div class="feed_border">
-		<h4><a  class="blue, right" href="users/map">SEARCH BY MAP</a></h4>
-		</div>
-
-
-		<h2>Event News</h2>
-		<h6>This weeks sponsored events</h6>
-	</div>
-
-	<div class="feed_border">
-		<h4>VAN DOREN INVITATIONAL 2015</h4>
-		<hr class = "line-break">
-		<img alt="Icon" src="http://cdn.skateboarding.transworld.net/wp-content/blogs.dir/440/files/2015/08/Screen-Shot-2015-08-01-at-9.04.10-PM-600x383.png" />
-		<!-- if you change these links look at .feed_border h4 and .feed_border p before. Just incase you dont need it -->
-		<p class="black">Ben Hatchell is crowned champion for his second Van Doren Invitational title since winning the inaugural Van Doren Invitational in 2013.</p>
-		<p><a  class="blue" href="http://www.vansusopenofsurfing.com/2015-skate">Full Details...</a></p>
-	</div>
+<% end %>
 
 
 
-	<div class="feed_border">
-	<h4>LANCE MOUNTAIN SIGNED FLIP BOARD GIVEAWAY</h4>
-	<hr class = "line-break">
-		<img alt="Icon" src="http://cdn.skateboarding.transworld.net/wp-content/blogs.dir/440/files/2015/07/TcoRy3lGp3E8_9OZTW53JzLaUN2rZw9Rr7msSiXxJ7qU75YPvgNwKr6fB2nWOmWBS2x9zeUdx6Gy1KLwHz5dKo0Dxvih-bmOaYEPNTYQoxYa6_Hcse-znq2wF2J5yWeLxV4h2nF8SY-i-XPf0GOcu3r45aytNHP4M4RYoKdCACTZAETxuGTrXf5b5okf2gjfbK16AwTFzOmZY6xMZdSqvbkAmWh-600x400.jpg" />
-		<!-- if you change these links look at .feed_border h4 and .feed_border p before. Just incase you dont need it -->
-		<p class="black">Want a signed Lance Mountain Flip board? Flip will be picking one winner each week for the next four weeks. Four winners total! Giveaway ends Friday, August 14, 2015</p>
-		<!-- <br> -->
-		<p><a  class="blue" href="https://www.facebook.com/nhsfunfactory?sk=app_190322544333196&ref=s">Click here to enter!</a></p>
-	</div>
-	<div class="feed_border">
-	<!-- if you change these links look at .feed_border h4 and .feed_border p before. Just incase you dont need it -->
-	<h4>"TRIALS AND TRIBULATIONS" VIDEO</h4>
-	<hr class = "line-break">
-	<img alt="Icon" src="http://cdn.skateboarding.transworld.net/wp-content/blogs.dir/440/files/2015/07/Screen-Shot-2015-07-28-at-4.41.23-PM-600x334.png" />
-	<p class="black">Sure, the video part is the fine tuned, final presentation, but sometimes the raw, behind-the-scenes footy tells an even better story. Clive is a savage.</p>
-	<p><a  class="blue" href="http://www.thrashermagazine.com/articles/videos/clive-dixons-trials-and-tribulations-video/">More details...</a></p>
-	<!-- <br> -->
-	</div>
-	<div class="feed_border">
-	<img alt="Icon" src="http://skateparkoftampa.com/spot/images3/damn-am-frontpage2.png" />
-	<!-- if you change these links look at .feed_border h4 and .feed_border p before. Just incase you dont need it -->
-	<h4>DAMN AM COSTA MESA, CA</h4>
-	<p class="blue">August 7-9, 2015</p>
-	<hr class = "line-break">
-	<h4>DAMN AM WOODWARD, PA</h4>
-	<p class="blue">August 27-29, 2015</p>
-	</div>
-	<div class="feed_border">
-	<h4>SUBSCRIBE TO THRASHER</h4>
-	<p><a  class="blue" href="http://shop.thrashermagazine.com/subscriptions/united-states.html">Click here to SUBSCRIBE!</a></p>
-	<img alt="Icon" src="http://www.thrashermagazine.com/imagesV2/Junk_Drawer/2015/07/300aug15.jpg" />
-	<hr class = "line-break">
-	<p><a  class="blue" href="http://shop.thrashermagazine.com/subscriptions/united-states.html">Click here to SUBSCRIBE!</a></p>
-	</div>
+              
+              <div class="widget">
+                  <h6 class="title">About The App</h6>
+                  <hr>
+                  <p>
+                      Sed ut perspiciatis unde omnis iste natus error sit voluptatem antium doloremque laudantium, totam rem aperiam, eaque ipsa quae.
+                  </p>
+              </div>
+              <!--end of widget-->
+              
+              <div class="widget">
+                  <h6 class="title">Search All</h6>
+                  <hr>
+                  <form>
+                      <input class="mb0" type="text" placeholder="Type Here" />
+                  </form>
+              </div>
+              <!--end of widget-->
 
-	<div class="feed_border">
-	<h4>Contact US</h4>
-	<h4>THE FOOTY™ APP</h4>
-	<p class="blue">garrettmckenzie@ymail.com</p>
-	<hr class = "line-break">
-	</div>
+              <!-- <div class="widget">
+               <h6 class="title">Search by map</h6>
+                            <hr>
+              <div id="map-canvas">
+                </div>
+              </div> -->
+                        <!--end of widget-->
+                        
+                            <div class="widget">
+                                <h6 class="title">Recent Posts</h6>
+                                <hr>
+                                <ul class="link-list recent-posts">
+                                
+<% @posts.each do |post| %>
+
+                                    <li>
+                                      <%= link_to "#{post.title}" ,  user_profile_path(post.user_id)%>
+                                        <span class="glyphicon glyphicon-time" aria-hidden="false">
+                                        </span>
+                                      <span class="date">
+                                      <%= "  " + (remove_unwanted_words distance_of_time_in_words(Time.now, post.updated_at)) + " ago" %>
+                                      </span>
+                                    
+                                          <%= link_to "Full Video", post_path(id: post.id), :class => "option_link" %>
+                                    
+                                    </li>
+                                   
+
+<% end %>
+                                </ul>
+                            </div>
+                            <!--end of widget-->
+                        
+
+                        
+                       <!--  <div class="widget">
+                            <h6 class="title">Blog Categories</h6>
+                            <hr>
+                            <ul class="link-list">
+                                <li>
+                                    <a href="#">Lifestyle</a>
+                                </li>
+                                <li>
+                                    <a href="#">Web Design</a>
+                                </li>
+                                <li>
+                                    <a href="#">Photography</a>
+                                </li>
+                                <li>
+                                    <a href="#">Freelance</a>
+                                </li>
+                            </ul>
+                        </div> -->
+                        <!--end of widget-->
+                       
+                        <div class="widget">
+                                <h6 class="title"> Freatured Instagram</h6>
+                                <hr>
+                                <div class="instafeed" data-user-name="breakfastlunchandpinners">
+                                    <ul></ul>
+                                </div>
+                            </div>
+                            <!--end of widget-->
+                    </div>
+                    <!--end of sidebar-->
+                </div>
+                <!--end of container-->
+            </section>
+
+
+
+
+
+
+          
+        </div>
+        <script src="../js/jquery.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/flickr.js"></script>
+        <script src="../js/flexslider.min.js"></script>
+        <script src="../js/lightbox.min.js"></script>
+        <script src="../js/masonry.min.js"></script>
+        <script src="../js/twitterfetcher.min.js"></script>
+        <script src="../js/spectragram.min.js"></script>
+        <script src="../js/ytplayer.min.js"></script>
+        <script src="../js/countdown.min.js"></script>
+        <script src="../js/smooth-scroll.min.js"></script>
+        <script src="../js/parallax.js"></script>
+        <script src="../js/scripts.js"></script>
+
+
+
+
+
+
+
 
 
 <!-- this creates ruby data in the view that can be accessed by JS if the <script> is on same exact file. multiple allows JS to know there is multple data  -->

@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
             redirect_to posts_path
         else
             flash["alert-warning"] = "Incorrect email or password, please try again..."
-            redirect_to new_user_path
+            redirect_to new_session_path
         end
     end
 

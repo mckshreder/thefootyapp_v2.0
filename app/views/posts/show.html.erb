@@ -1,3 +1,300 @@
+<%= render partial: "partials/main_nav" %>
+ 
+
+ <div class="main-container">
+            <section class="page-title page-title-4 bg-secondary">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="uppercase mb0"><%= @post.title %></h3>
+                            <p class="lead mb0">Posted: <%=(remove_unwanted_words distance_of_time_in_words(Time.now, @post.updated_at)) + " ago"  %> </p>
+
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <ol class="breadcrumb breadcrumb-2">
+                                <li>
+                                    <a href="index.html">Home</a>
+                                </li>
+                                <li>
+                                    <a href="#">Footy</a>
+                                </li>
+                                <li class="active"><%= @post.user.name %></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+            <section class="pt0">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9 mb-xs-24">
+                            <div class="post-snippet mb64">
+                                <!-- <img class="mb24" alt="Post Image" src="img/blog-single.jpg" /> -->
+
+                                <%= cl_video_tag(@post.video.to_s.split("/upload/").last.split(".").first, :video_codec=>"h264", :width=>693, :crop=>:scale, :controls => true, :poster => true, :fallback_content => "Your browser does not support HTML5 video tags")%>
+
+
+                                <div class="post-title">
+                                    <span class="label"><span class="glyphicon glyphicon-time" aria-hidden="false">
+                </span><%= "  " + (remove_unwanted_words distance_of_time_in_words(Time.now, @post.updated_at)) + " ago"  %></span>
+                                    <h4 class="inline-block"><%= @post.title %></h4>
+                                </div>
+                                <ul class="post-meta">
+                                    <li>
+                                        <i class="ti-user"></i>
+                                        <span>Written by
+                                            <%= link_to @post.user.name, user_profile_path(@post.user_id), class: "right_column_button" %>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <i class="ti-tag"></i>
+                                        <span>Location
+                                            <a href="#"><%= @post.address %></a>
+                                        </span>
+                                    </li>
+                                </ul>
+                                <hr>
+                                <h6 class="lead">
+                                Video Details
+                                </h6>
+                                <p class="lead">
+                                    <%= @post.body %>
+                                </p>
+                                
+                            </div>
+                            <!--end of post snippet-->
+                            <hr>
+                            <div class="comments">
+                                <h5 class="uppercase">3 Comments</h5>
+                                <ul class="comments-list">
+                                    <li>
+                                        <div class="avatar">
+                                            <img alt="Avatar" src="img/avatar1.png" />
+                                        </div>
+                                        <div class="comment">
+                                            <span class="uppercase author">Jane Lovell, September 8</span>
+                                            <a class="btn btn-sm" href="#">Reply</a>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                            </p>
+                                        </div>
+                                        <ul>
+                                            <li>
+                                                <div class="avatar">
+                                                    <img alt="Avatar" src="img/avatar2.png" />
+                                                </div>
+                                                <div class="comment">
+                                                    <span class="uppercase author">Tim Jackson, September 8</span>
+                                                    <a class="btn btn-sm" href="#">Reply</a>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <div class="avatar">
+                                            <img alt="Avatar" src="img/avatar3.png" />
+                                        </div>
+                                        <div class="comment">
+                                            <span class="uppercase author">Roland Sims, September 9</span>
+                                            <a class="btn btn-sm" href="#">Reply</a>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <hr>
+                                <h5 class="uppercase">Leave A Comment</h5>
+                                <form>
+                                    <input name="name" type="text" placeholder="Your Name" />
+                                    <input name="email" type="text" placeholder="Email Address" />
+                                    <textarea rows="3" placeholder="Comment"></textarea>
+                                    <input type="submit" value="Leave Comment" />
+                                </form>
+                            </div>
+                            <!--end of comments-->
+                        </div>
+                        <!--end of nine col-->
+                        <div class="col-md-3 hidden-sm">
+                            <!-- <div class="widget">
+                                <h6 class="title">Search Footy</h6>
+                                <hr>
+                                <form>
+                                    <input class="mb0" type="text" placeholder="Type Here" />
+                                </form>
+                            </div> -->
+                            <!--end of widget-->
+
+
+                            <div class="widget pt8">
+                                <h6 class="title">About The Author</h6>
+                                <hr>
+                                
+                                <!-- <%= cl_image_tag(current_user.image,:width => 100, :height => 100, :crop => :fill, :radius => :max, class: "user_profile_photo_tag text-center") %> -->
+
+                                
+                                  <p class="black"><small>Name:</small> 
+                                    <%= @post.user.name%>        
+                                  </p>
+                                
+                                
+                                
+                                  <p class="black"><small>Age:</small> 
+                                  <%= @post.user.age%> years old.
+                                  </p>
+                                
+
+                                
+                                  <p class="black"><small>Location :</small>
+                                    <%= @post.user.location%>        </p>
+                                
+                                
+                                
+                                  <p class="black"><small>Email: </small><%= @post.user.email%></p>
+                                
+
+                                
+                                  <p class="black"><small>About Me:</small>
+                                 <%= @post.user.bio%></p>
+                                
+
+                              
+                            </div>
+                            <!--end of widget-->
+                            <div class="widget">
+                                <h6 class="title">Blog Categories</h6>
+                                <hr>
+                                <ul class="link-list">
+                                    <li>
+                                        <%= link_to "Direct message", user_profile_path(@post.user_id), class: "right_column_button" %>
+                                    </li>
+                                    <li>
+                                      <%= link_to "#{@post.user.name.split.first}'s profile", user_profile_path(@post.user_id), class: "right_column_button" %> 
+                                    </li>
+                                    <li>
+                                      <%= link_to "Return to All Posts",  posts_path, :class => "title_link, blue" %>
+                                    </li>
+                                    <li>
+                                      <%= link_to 'Destroy this post', @post, :class => "title_link_right", method: :delete, data: { confirm: 'Are you sure you want to delete this post?' } %>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--end of widget-->
+                            <div class="widget">
+                                <h6 class="title">Recent Posts</h6>
+                                <hr>
+                                <ul class="link-list recent-posts">
+
+                                <% if @posts.count > 0 %>
+    <% @posts.each do |post| %>
+      
+    <div class = "large_feed">
+
+      <div class="video_top_info">
+      <%= cl_image_tag(post.user.image,:width => 133, :height => 133, :crop => :fill, class: "user_profile_photo_tag") %>
+        <%= "  " %>
+        <%= post.user.name %>
+        
+      <div>
+          <%= "| posted:" %>
+          <span class="glyphicon glyphicon-time" aria-hidden="false">
+          </span>
+          <%= "  " + (remove_unwanted_words distance_of_time_in_words(Time.now, post.updated_at)) + " ago"  %>
+        </div>
+      </div> 
+
+           
+     <div class="center">
+          <%= cl_video_tag(post.video.to_s.split("/upload/").last.split(".").first, :video_codec=>"h264", :width=>493, :crop=>:scale, :controls => true, :poster => true, :fallback_content => "Your browser does not support HTML5 video tags")%>
+        </div>
+    
+    <div class="video-poster, info-on-feed">
+  
+            <div class="video-poster">
+          <div>
+            <xsmall>Video title:</xsmall>
+        <%= link_to "'#{post.title}'", post_path(id: post.id), :class => "title-link, blue" %>
+          </div>
+          </div>
+
+      <hr class = "small_line_break">
+
+          <xsmall>
+            <%="Skater Info:"%>
+          </xsmall> 
+          
+          <div class = "info-on-feed, center">
+                  <p>Name: </p>
+                  <p><%= link_to post.user.name ,  user_profile_path(post.user_id),:class => "option_link"%></p>
+          </div>    
+                  <p> Age: <%= post.user.age%></p>
+                  <p> | City: <%= post.address%></p>
+      <!-- <div class = "video-poster">
+             <%= link_to post.user.name ,  user_profile_path(post.user_id), :class => "large_posts_title" %>
+        </div> -->
+    
+      <div>
+      <p>
+        Options:
+      </p>
+            <%= link_to "#{post.user.name.split.first}'s "+"Profile",  user_profile_path(post.user_id), :class => "option_link" %>
+            <%= "  &  "%>
+            <%= link_to "Full Video", post_path(id: post.id), :class => "option_link" %>
+          </div>
+    </div> 
+
+          <br>
+
+        </div>
+        
+    <% end %>
+  </div>
+
+<!-- <br>  --> 
+<% else %>
+    <h2>No Posts Exist</h2>
+<% end %>
+
+                                    <li>
+                                        <a href="#">A simple image post for starters</a>
+                                        <span class="date">September 23, 2015</span>
+                                    </li>
+                                    <li>
+                                        <a href="#">An audio post for good measure</a>
+                                        <span class="date">September 19, 2015</span>
+                                    </li>
+                                    <li>
+                                        <a href="#">A thoguhtful blockquote post on life</a>
+                                        <span class="date">September 07, 2015</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--end of widget-->
+                            <!-- <div class="widget">
+                                <h6 class="title">Latest Updates</h6>
+                                <hr>
+                                <div class="twitter-feed">
+                                    <div class="tweets-feed" data-widget-id="492085717044981760">
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!--end of widget-->
+                        </div>
+                        <!--end of sidebar-->
+                    </div>
+                    <!--end of container row-->
+                </div>
+                <!--end of container-->
+            </section>
+</div>
+
+
+
 <div class="left_column">
 <div class="video_top_info">
             <%= cl_image_tag(@post.user.image,:width => 133, :height => 133, :crop => :fill, class: "user_profile_photo_tag") %>
@@ -41,7 +338,7 @@
 <% if current_user %>
         <ul id="topright_nav">
         <li>
-          <%= cl_image_tag(current_user.image,:width => 133, :height => 133, :crop => :fill, class: "user_profile_photo_tag") %>
+          <%= cl_image_tag(current_user.image,:width => 133, :height => 133, :crop => :fill, :radius => :max, class: "user_profile_photo_tag") %>
                 <small>Hello, </small>
                   
                   <a><%= link_to "#{current_user.name}", user_profile_path(current_user) %>
@@ -197,4 +494,19 @@
 
 </div>
     <% end %>
+
+
+    <script src="../js/jquery.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/flickr.js"></script>
+        <script src="../js/flexslider.min.js"></script>
+        <script src="../js/lightbox.min.js"></script>
+        <script src="../js/masonry.min.js"></script>
+        <script src="../js/twitterfetcher.min.js"></script>
+        <script src="../js/spectragram.min.js"></script>
+        <script src="../js/ytplayer.min.js"></script>
+        <script src="../js/countdown.min.js"></script>
+        <script src="../js/smooth-scroll.min.js"></script>
+        <script src="../js/parallax.js"></script>
+        <script src="../js/scripts.js"></script>
 
