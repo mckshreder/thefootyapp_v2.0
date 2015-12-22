@@ -133,26 +133,54 @@ $(document).ready(function() {
                             <div class="container">
                                 <div class="row">
                                     <div class="col-sm-12 text-center">
-                                        <h1 class="uppercase mb0">Footy</h1>
+                                        <h2 class="uppercase mb0">Footy</h2>
+                                        <p class="lead mb0">Skate, Film, Share</p>
                                     </div>
                                 </div>
-                                <!--end of row-->
+                                
                             </div>
                             <!--end of container-->
                               <ol class="breadcrumb breadcrumb-2">
                                   <li>
-                                      <a href="#">Clock Footy</a>
+                                      <a href="#">Home</a>
                                   </li>
                                   <li>
-                                      <a href="#">Publish an Article</a>
+                                      <a href="#">Footy</a>
                                   </li>
-                                  <li class="active">Share your work!</li>
+                                  <li class="active">All Footy</li>
                               </ol>
 
                         </section>
                   
 
                     <div class="col-md-9 pt8">
+
+                    <!-- <div class="row">
+                        <div class="col-md-4 col-sm-4 masonry col-xs-12">
+                            <div class="select-option">
+                                <i class="ti-angle-down"></i>
+                                <select>
+                                    <option selected value="Default">Sort By</option>
+                                    <option value="Small">Highest Price</option>
+                                    <option value="Medium">Lowest Price</option>
+                                    <option value="Larger">Newest Items</option>
+                                </select>
+                            </div>
+                            end select
+                        </div>
+                        <div class="col-md-8 masonry text-right">
+                            <span class="input-lh">Displaying 8 of 8 results</span>
+                        </div>
+                    </div>
+                end of row
+
+                    <div class="row pb0">
+                      <div class="col-sm-12 pb0">
+                          <br>
+                      </div>
+                    </div> -->
+
+
                         <div class="row masonry-loader">
                             <div class="col-sm-12 text-center">
                                 <div class="spinner"></div>
@@ -432,7 +460,7 @@ $(document).ready(function() {
     <%= form_for @user, url: create_session_path do |f| %>
 
         <div class="form_group">
-        <%= f.email_field :email, :placeholder => 'EMAIL', class: "form-control" %>
+        <%= f.email_field :email, :placeholder => 'EMAIL', class: "form-control", type: "text" %>
         </div>
     
         <div class="form_group"> 
@@ -442,7 +470,7 @@ $(document).ready(function() {
         <%= f.submit "LOG IN", class: "submit-button-create, large_button" %>
     <% end %>
     <h5 class="center">NOT A MEMBER...?</h5>
-    <%= link_to "CREATE YOUR ACCOUNT", new_event_path, class: "btn btn-large"  %>
+    <%= link_to "CREATE YOUR ACCOUNT", new_user_path, class: "btn btn-large"  %>
     </div>
 
 <% end %>
