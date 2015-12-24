@@ -383,84 +383,28 @@ $(document).ready(function() {
     </div>
 
 <% else %>
-    <div class="col-sm-12 ms5 mb8 p0">  
     <div class="feed_border">
-        <h4 class="text-center mb16 mt8">theFOOTY™app</h4>
-        <!-- <hr class="mb8"> -->
-        <!-- <h5 class="text-left pb0 mb8">ALREADY A MEMBER?</h5> -->
+        <h5 class="text-left mb8">theFOOTY™app</h5>
+        <hr class="">
+        <h5 class="text-left pb0 mb8">ALREADY A MEMBER?</h5>
     </div>
-        <!-- <h5 class="text-center mb8">Not a member?</h5> -->
-        <!-- <hr class=""> -->
-        <ul class="accordion accordion-1 text-center mb8">
-            <li>
-                <div class="title">
-                    <!-- <span>Create new Account</span> -->
-                    <span><%= link_to "Try for free!", new_user_path, class: ""  %></span>
-                </div>
+    
+    <div class = "feed_border">
+        <h6 class="center pb0">SIGN IN TO YOUR FOOTY ACCOUNT</h6>
+    <%= form_for @user, url: create_session_path do |f| %>
 
-                <div class="content mb16 border-sm">
-                    <div class = "feed_border">
-                       
-                    <p><%= link_to "Register here!", new_user_path, class: ""  %></p>
-                    </div>
-                   
-                </div>
-            </li>
-        </ul>
-        <!--end of accordion-->
-        <h5 class="text-center mb8">Already a member?</h5>
-
-        <ul class="accordion accordion-1 text-center mb8">
-            <li>
-                <div class="title">
-                    <!-- <span>Create new Account</span> -->
-                    <span><%= link_to "Log in Here!", new_session_path, class: ""  %></span>
-                </div>
-
-                <div class="content mb16 border-sm">
-                    <div class = "feed_border">
-                       
-                    <p><%= link_to "Sign in to your Account", new_session_path, class: ""  %></p>
-                    </div>
-                   
-                </div>
-            </li>
-        </ul>
-
-
-        <!-- <ul class="accordion accordion-2 mb8 text-center">
-            <li>
-                <div class="title">
-                    <span>Log in Here</span>
-                </div>
-
-                <div class="content">
-                    <div class = "feed_border">
-                        <h6 class="center pb0 mb0 mt16">SIGN IN TO YOUR FOOTY ACCOUNT</h6>
-                        <span>Fill out form</span>
-                            <%= form_for @user, url: create_session_path do |f| %>
-
-                                <div class="form_group">
-                                <%= f.email_field :email, :placeholder => 'EMAIL', class: "form-control", type: "text" %>
-                                </div>
-                            
-                                <div class="form_group"> 
-                                <%= f.password_field :password, :placeholder => 'PASSWORD', class: "form-control" %>
-                                </div>
-                                                    <span class="pt8">(click below)</span>
-
-                                <%= f.submit "CLICK TO LOG IN", class: "submit-button-create, large_button" %>
-                            <% end %>
-
-                    
-                    </div>
-                   
-                </div>
-            </li>
-        </ul> -->
-        <!--end of accordion-->
-
-  
+        <div class="form_group">
+        <%= f.email_field :email, :placeholder => 'EMAIL', class: "form-control", type: "text" %>
+        </div>
+    
+        <div class="form_group"> 
+        <%= f.password_field :password, :placeholder => 'PASSWORD', class: "form-control" %>
+        </div>
+    
+        <%= f.submit "LOG IN", class: "submit-button-create, large_button" %>
+    <% end %>
+    <h5 class="center">NOT A MEMBER...?</h5>
+    <%= link_to "CREATE YOUR ACCOUNT", new_user_path, class: "btn btn-large"  %>
     </div>
     
     
