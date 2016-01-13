@@ -116,8 +116,50 @@ $(document).ready(function() {
                 </div>
                 end of container
             </section> -->
+
+                        <section class="pt120 pb120 image-bg overlay">
+                            <div class="background-image-holder">
+                                <img alt="Background" class="background-image" src="https://res.cloudinary.com/mckshreder/image/upload/q_100/v1447575025/IMG_0220_kcbdhf.jpg" />
+                            </div>
+                            <div class="container">
+                                <div class="row v-align-children">
+                                    <div class="col-sm-8 mb-xs-80">
+                                        <h2 class="mb16">WELCOME TO <br/>FOOTY™</h2>
+                                        <!-- <h3 class="mb16">SKATE | FILM | SHARE</h3>                                         -->
+                                        <h6 class="uppercase mb16">
+                                        A complete skateboard social network.
+                                        <br/>Publish & Share your very own skateboarding<br/>articles & events with theFootyapp™.</h6>
+                                        
+                                        <a class="btn btn-filled btn-lg mb0" href="#">Start Exploring</a>
+                                    </div>
+                                    <div class="col-sm-4 text-center text-left-xs">
+                                        <div class="modal-container">
+                                            <div class="play-button btn-modal large inline"></div>
+                                            <div class="foundry_modal no-bg">
+                                                <iframe data-provider="youtube" data-video-id="9TKauIurEAQ" data-autoplay="1"></iframe>
+                                            </div>
+                                        </div>
+                                        <!--end of modal video-->
+                                    </div>
+                                </div>
+                                <!--end of row-->
+                            </div>
+                            <!--end of container-->
+                        </section>
             
             
+            <section class="bg-secondary pt0 pb0">
+                <div class="container p0">
+                    <div class="row mb0 mb-xs-8">
+                        <div class="col-sm-12 text-center">
+                            <h3 class="mb16 pt16">Today's Top Footy™</h3>
+                            <p class="lead mb8">
+                                A collection of skateboarding's brightest talent gathered in one place from all around the world.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <section class="bg-secondary pt0">
                 <div class="container p0">
@@ -235,9 +277,9 @@ $(document).ready(function() {
                         </section> -->
 
                         
+                    
 
                         
-
                         <div class="row masonry masonryFlyIn mb40">
                         
                             
@@ -247,53 +289,53 @@ $(document).ready(function() {
     <% @posts.each do |post| %>
 
 
-                            <div class="col-sm-6 post-snippet masonry-item p0 mb5">
+                    <div class="col-sm-6 post-snippet masonry-item p0 mb5">
+                        
+                        <%= cl_video_tag(post.video.to_s.split("/upload/").last.split(".").first, :class => "mb_16 pb0", :video_codec=>"h264", :width=>493, :crop=>:scale, :controls => true, :fallback_content => "Your browser does not support HTML5 video tags")%>
+                        <div class="inner">
+                            <a href="#">
+                                <h5 class="mb8"><%= link_to "'#{post.title}'", post_path(id: post.id), :class => "title-link, blue" %></h5>
+                                 <i class="ti-user"></i>
+                                <span>Posted by
+                                    <%= link_to post.user.name ,  user_profile_path(post.user_id),:class => "option_link"%>
+                                </span>
+                                <!-- <span class="glyphicon glyphicon-time" aria-hidden="false">
+                                </span> -->
+                                <span class="mb16"><%= "  " + (remove_unwanted_words distance_of_time_in_words(Time.now, post.updated_at)) + " ago"  %></span>
+                            </a>
+                             
                                 
-                                <%= cl_video_tag(post.video.to_s.split("/upload/").last.split(".").first, :class => "mb_16 pb0", :video_codec=>"h264", :width=>493, :crop=>:scale, :controls => true, :fallback_content => "Your browser does not support HTML5 video tags")%>
-                                <div class="inner">
-                                    <a href="#">
-                                        <h5 class="mb8"><%= link_to "'#{post.title}'", post_path(id: post.id), :class => "title-link, blue" %></h5>
-                                         <i class="ti-user"></i>
-                                        <span>Posted by
-                                            <%= link_to post.user.name ,  user_profile_path(post.user_id),:class => "option_link"%>
-                                        </span>
-                                        <!-- <span class="glyphicon glyphicon-time" aria-hidden="false">
-                                        </span> -->
-                                        <span class="mb16"><%= "  " + (remove_unwanted_words distance_of_time_in_words(Time.now, post.updated_at)) + " ago"  %></span>
+                            <hr class="mb5">
+                            <p class="mb5"> <%= post.body %>
+                               <!--  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo. -->
+                            </p>
+                            
+
+                            
+                                    <!--<%= link_to "Read More",  user_profile_path(post.user_id),:class => "btn btn-sm" %>-->
+                                    <%= link_to "Read More", post_path(id: post.id), :class => "btn btn-sm" %>
+
+                              
+                              <!--<%= link_to "#{post.user.name.split.first}'s "+"Profile",  user_profile_path(post.user_id), :class => "option_link" %>
+                              <%= "  &  "%>
+                              <%= link_to "Full Video", post_path(id: post.id), :class => "option_link" %>-->
+                            
+                            <ul class="tags pull-right">
+                                <li>
+                                    <a class="btn btn-sm btn-icon" href="#">
+                                        <i class="ti-twitter-alt"></i>
                                     </a>
-                                     
-                                        
-                                    <hr class="mb5">
-                                    <p class="mb5"> <%= post.body %>
-                                       <!--  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo. -->
-                                    </p>
-                                    
+                                </li>
+                                <li>
+                                    <a class="btn btn-sm btn-icon" href="#">
+                                        <i class="ti-facebook"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
 
-                                    
-                                            <!--<%= link_to "Read More",  user_profile_path(post.user_id),:class => "btn btn-sm" %>-->
-                                            <%= link_to "Read More", post_path(id: post.id), :class => "btn btn-sm" %>
-
-                                      
-                                      <!--<%= link_to "#{post.user.name.split.first}'s "+"Profile",  user_profile_path(post.user_id), :class => "option_link" %>
-                                      <%= "  &  "%>
-                                      <%= link_to "Full Video", post_path(id: post.id), :class => "option_link" %>-->
-                                    
-                                    <ul class="tags pull-right">
-                                        <li>
-                                            <a class="btn btn-sm btn-icon" href="#">
-                                                <i class="ti-twitter-alt"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="btn btn-sm btn-icon" href="#">
-                                                <i class="ti-facebook"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                                <% end %>
+                        <% end %>
 
 <% else %>
     <h2>No Posts Exist</h2>

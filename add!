@@ -1,0 +1,10 @@
+# System-wide .profile for sh(1)
+
+if [ -x /usr/libexec/path_helper ]; then
+	eval `/usr/libexec/path_helper -s`
+fi
+
+if [ "${BASH-no}" != "no" ]; then
+	[ -r /etc/bashrc ] && . /etc/bashrc
+	export SECRET_KEY_BASE=2d5acce9caf92984cc91ee5096e5674f47dacb4a68372de08a6fa5f92d1ea6b6b232081913be7fe33870eac44dbb612b4128db27ea9149d5ae609e9a83c373ae
+fi

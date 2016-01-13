@@ -30,55 +30,55 @@
                                     <%= form_for @user, :html => { :multipart => true }, :method => :post do |f|  %>
    
     
-    <div class="form_group">
-    <!-- <h5 class="center">CREATE YOUR FOOTY ACCOUNT</h5> -->
-    <%= f.text_field :name, :placeholder => 'NAME', class: "form-control"%>
-    </div>
-    
-    <div class="form_group">
-    <%= f.email_field :email, :placeholder => 'EMAIL', class: "form-control", type: "text"%>
-    </div>
-    
-    <div class="form_group"> 
-    <%= f.password_field :password, :placeholder => 'PASSWORD', class: "form-control" %>
-    </div>
-    <div class="form_group">
-    <%= f.password_field :password_confirmation, :placeholder => 'CONFIRM NEW PASSWORD', class: "form-control" %>
-    </div>
+                                    <div class="form_group">
+                                    <!-- <h5 class="center">CREATE YOUR FOOTY ACCOUNT</h5> -->
+                                    <%= f.text_field :name, :placeholder => 'NAME', class: "form-control"%>
+                                    </div>
+                                    
+                                    <div class="form_group">
+                                    <%= f.email_field :email, :placeholder => 'EMAIL', class: "form-control", type: "text"%>
+                                    </div>
+                                    
+                                    <div class="form_group"> 
+                                    <%= f.password_field :password, :placeholder => 'PASSWORD', class: "form-control" %>
+                                    </div>
+                                    <div class="form_group">
+                                    <%= f.password_field :password_confirmation, :placeholder => 'CONFIRM NEW PASSWORD', class: "form-control" %>
+                                    </div>
 
-    <!-- <div class="form_group">
-    <%= f.text_field :age, :placeholder => 'YOUR AGE', class: "form-control"%>
-    </div> -->
+                                    <!-- <div class="form_group">
+                                    <%= f.text_field :age, :placeholder => 'YOUR AGE', class: "form-control"%>
+                                    </div> -->
 
-    <!-- <div class="form_group">
-    <%= f.text_field :location, :placeholder => 'YOUR CITY AND STATE', class: "form-control" %>
-    </div> -->
+                                    <!-- <div class="form_group">
+                                    <%= f.text_field :location, :placeholder => 'YOUR CITY AND STATE', class: "form-control" %>
+                                    </div> -->
 
-    <!-- <div class="form_group">
-    <%= f.text_area :bio, :placeholder => 'YOUR BIO', class: "form-control"%>
-    </div> -->
+                                    <!-- <div class="form_group">
+                                    <%= f.text_area :bio, :placeholder => 'YOUR BIO', class: "form-control"%>
+                                    </div> -->
 
-    <!-- <div class="form-group">
-    <%= f.hidden_field(:image_cache)%>
-    <%= f.file_field(:image, class: "form-control", :html => { :multiple => true }, id: "exampleInputFile")%>
-    <p class="left">Upload Your Profile Photo<small>(Recommended.)</p>
-    </div> -->
+                                    <!-- <div class="form-group">
+                                    <%= f.hidden_field(:image_cache)%>
+                                    <%= f.file_field(:image, class: "form-control", :html => { :multiple => true }, id: "exampleInputFile")%>
+                                    <p class="left">Upload Your Profile Photo<small>(Recommended.)</p>
+                                    </div> -->
 
-    <div class="actions">
-    <%= f.submit "CREATE ACCOUNT", class: "submit-button-create, btn, large_button"%>
-    </div>
-<% end %>
-                                <!-- </form> -->
-                                <p class="mb0">By signing up, you agree to our
-                                    <a href="#">Terms Of Use</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!--end of row-->
-                </div>
-                <!--end of container-->
-            </section>
+                                    <div class="actions">
+                                    <%= f.submit "CREATE ACCOUNT", class: "submit-button-create, btn, large_button"%>
+                                    </div>
+                                <% end %>
+                                                                <!-- </form> -->
+                                                                <p class="mb0">By signing up, you agree to our
+                                                                    <a href="#">Terms Of Use</a>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end of row-->
+                                                </div>
+                                                <!--end of container-->
+                                            </section>
 
 </div>
 

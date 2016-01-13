@@ -1,134 +1,118 @@
-<div class="left_column">
-  <div class="feed_border">
-      <h4 class="left">the FOOTY™app</h4>
-      <h2>POST YOUR FOOTY™</h2>
-      <hr class="small_line_break">
-      <h4 class="right">Please fill all fields below.</h4>
-    </div>
-  <div class="home_info"> 
-    <ul class="text_list black">
+<%= render partial: "partials/main_nav" %>
 
-<%= form_for @post, :html => { :multipart => true }, :method => :post do |f| %>
-    
-   <!-- <div class="form-group">
+
+<!-- <div class="left_column"> -->
+  <!-- <div class="feed_border">
+    <% flash.each do |key, value| %>
+    <h4><%= value %></h4>
+    <% end %>
+      <h4 class="left">theFOOTY™app</h4>
+      <h2 class = "left">SIGN UP FOR FREE!</h2>
+    </div> -->
+
+<div class="main-container">
+            <section class="cover fullscreen image-bg overlay">
+
+
+
+                <div class="background-image-holder">
+                    <img alt="image" class="background-image" src="https://res.cloudinary.com/mckshreder/image/upload/v1447655555/2014-07-01_17.43.02_pt7m6w.jpg" />
+                </div>
+                <div class="container v-align-transform pt8">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <div class="feature bordered text-center pt8">
+               
+                                <h3 class="uppercase mb0 pb8">POST YOUR FOOTY™</h3>
+                                <!-- <p class="mb0">100% Free Fot Everyone</p> -->
+
+                                <!-- <form class="text-left"> -->
+                                    <%= form_for @post, :html => { :multipart => true }, :method => :post do |f|  %>
+   
+
+    <!-- <div class="form-group">
     <p>Upload a Photo<p>
     <%= f.hidden_field(:image_cache)%>
     <%= f.file_field(:image, :html => { :multiple => true })%>
-    </div> -->
+    </div>  -->
 
     <div class="form-group">
-    <p>Upload a Video<p>
+    
+    <h4 class="uppercase mb0 pb8">Upload a Video</h4>
     <%= f.hidden_field(:video_cache)%>
     <%= f.file_field(:video, :chunk_size => 6_000_000, :html => { :multiple => true })%>
     </div>
 
     <div class="form-group">
-    <%= f.label 'Title' %>
-    <%= f.text_field :title, class: "form-control"%>
+    <h4 class="uppercase mb0 pb8">Input Title</h4>
+    <!-- <%= f.label 'Title'%> -->
+    <%= f.text_field :title, class: "form-control" , type: "text"%>
     </div>
 
     <div class="form-group">
-    <%= f.label 'Caption' %>
-    <%= f.text_area :body, class: "form-control"%>
+    <h4 class="uppercase mb0 pb8">Video Caption</h4>
+    <!-- <%= f.label 'Caption' %> -->
+    <%= f.text_area :body, class: "form-control", type: "text"%>
     </div>
 
 
     <div class="form-group">
-    <%= f.label 'Address (City, State)' %>
-    <%= f.text_field :address, class: "form-control", placeholder: "eg.(Whittier, CA)" %>
+    <h4 class="uppercase mb0 pb8">'Address (City, State)'</h4>
+    <!-- <%= f.label 'Address (City, State)' %> -->
+    <%= f.text_field :address, class: "form-control", placeholder: "eg.(Whittier, CA)", type: "text"%>
     </div>
 
 
-    <%= f.submit "Post", class: "submit-button-create" %>
+                                    <div class="actions">
+                                    <%= f.submit "Post", class: "submit-button-create, btn, large_button"%>
+                                    </div>
+                                <% end %>
+                                                                <!-- </form> -->
+                                                                <p class="mb0">By signing up, you agree to our
+                                                                    <a href="#">Terms Of Use</a>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end of row-->
+                                                </div>
+                                                <!--end of container-->
+                                            </section>
 
-<% end %>
-    </ul>
+</div>
+
+
+
+</ul>
   </div>
 </div>
 
+
+   
+    
 
 <!-- this is the user profile photo container  for right column-->
         
 
 <!-- this is the "sign in or sign up forum" -->
-<% if current_user %>
-    <div class="right_column">
-
-        <ul id="topright_nav">
-        <li>
-            <%= cl_image_tag(current_user.image,:width => 133, :height => 133, :crop => :fill, class: "user_profile_photo_tag") %>
-                <small>Hello, </small>
-                  
-                  <a><%= link_to "#{current_user.name}", user_profile_path(current_user) %>
-                  </a>
-                 <!--  <span class="glyphicon glyphicon-cog" aria-hidden="true">
-                  </span>
- -->              
-              <ul> 
-                <li>
-                     <a><%= link_to "Your Profile", user_profile_path(current_user)%>
-                     </a>
-                </li> 
-                <li>
-                    <a><%= link_to "Edit Account", edit_users_path(current_user) %>
-                    </a>
-                </li>  
-                <li>
-                    <a><%= link_to "Log out", destroy_session_path %>
-                    </a>
-                </li>  
-              </ul>
-            </li>
-        </ul>
-        
 
 
-    <div class="feed_border">
-      <hr class = "small_line_break">
-        <h5 class="center">YOUR FOOTY™ DASHBOARD</h5>
-      </div>
-    </div>
+
+    <script src="../js/jquery.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/flickr.js"></script>
+        <script src="../js/flexslider.min.js"></script>
+        <script src="../js/lightbox.min.js"></script>
+        <script src="../js/masonry.min.js"></script>
+        <script src="../js/twitterfetcher.min.js"></script>
+        <script src="../js/spectragram.min.js"></script>
+        <script src="../js/ytplayer.min.js"></script>
+        <script src="../js/countdown.min.js"></script>
+        <script src="../js/smooth-scroll.min.js"></script>
+        <script src="../js/parallax.js"></script>
+        <script src="../js/scripts.js"></script>
 
 
 
 
 
-
-<% else %>
-
-<div class="right_column">
-    <div id="topright_nav">
-        <!-- <h4 class="center">New to the Footy app?</h4>
-        <h3 class="center">Sign up for Free!</h3>
-        <p class="center">It's simple and easy.</p>
-        <%= link_to "Create New Account", new_user_path, class: "submit-button, large_button" %>
-        <hr> -->
-        <h2 class="center">Hello, Sign in</h2>
-        <h5 class="center">your footy™ account.</h5>
-
-        <%= link_to "Log in", new_user_path, class: "submit-button, large_button" %>
-    </div>
-    <h4 class="center">theFOOTY™app</h4>
-</div>
-    <% end %>
-
-    
-<!-- <div class="right_column">
-    <div class="home_info"> 
-        <ul class="text_list">
-            <h3>What to do...</h3>
-            <li>
-                <p>#1. Film and edit a fun video or a "Sponsor me clip" with your best footy.</p>
-            </li>
-            <li>
-                <p>#2. Paste the YouTube url link into the form.</p>
-            </li>
-            <li>
-                <p>#3. Complete all parts of the form.</p>
-            </li>
-            <li>
-                <p>#4. Share your footy with the company of your choice!</p>
-            </li>
-        </ul>
-    </div>
-</div> -->
