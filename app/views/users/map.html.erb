@@ -16,63 +16,63 @@ function initialize() {
       mapOptions);
 
   // this creates a location of the current users location 
-	if(navigator.geolocation) {
-	    navigator.geolocation.getCurrentPosition(function(position) {
-	      	// this assigns the current users coordinats as pos
-	      	var pos = new google.maps.LatLng(position.coords.latitude,
-	                                       position.coords.longitude);
-	      	// below creates the info window marker for current user location
-	      	var infowindow = new google.maps.InfoWindow({
-		        // must use map
-		        map: map,
-		        // assigns the window to show on map at current user location
-		        position: pos,
-		        content: 'your current location'
-	      	});
-	      	// brings the users map to center their location
-	    	map.setCenter(pos);
-	 	});
+    if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            // this assigns the current users coordinats as pos
+            var pos = new google.maps.LatLng(position.coords.latitude,
+                                           position.coords.longitude);
+            // below creates the info window marker for current user location
+            var infowindow = new google.maps.InfoWindow({
+                // must use map
+                map: map,
+                // assigns the window to show on map at current user location
+                position: pos,
+                content: 'your current location'
+            });
+            // brings the users map to center their location
+            map.setCenter(pos);
+        });
 
-	 	handleNoGeolocation(true);
-	}
-	else {
+        handleNoGeolocation(true);
+    }
+    else {
     // Browser doesn't support Geolocation
-    	handleNoGeolocation(false);
-  	}
-  	
-  	// variable for all markers in post.all. We extract the data from the <select hidden, id = "marker_data" multiple> tag. data is ["123.1,-76.928"] Jquery
-  	var markers = $("#marker_data").val();
+        handleNoGeolocation(false);
+    }
+    
+    // variable for all markers in post.all. We extract the data from the <select hidden, id = "marker_data" multiple> tag. data is ["123.1,-76.928"] Jquery
+    var markers = $("#marker_data").val();
 
-	for (var i = 0; i < markers.length; i++) {
-		// this splits data into two seperate strings of an array. Erase ","
-		var coordinates = markers[i].split(",");
-		// Number takes array turns strings into numbers for google pos variable
-		var pos = new google.maps.LatLng(Number(coordinates[0]),Number(coordinates[1]));
-	      console.log(pos);
+    for (var i = 0; i < markers.length; i++) {
+        // this splits data into two seperate strings of an array. Erase ","
+        var coordinates = markers[i].split(",");
+        // Number takes array turns strings into numbers for google pos variable
+        var pos = new google.maps.LatLng(Number(coordinates[0]),Number(coordinates[1]));
+          console.log(pos);
 
-	    
-      	var contentString = '<h4>Info for this post coming soon...</h4>';
+        
+        var contentString = '<h4>Info for this post coming soon...</h4>';
 
-	  var infowindow = new google.maps.InfoWindow({
-	      content: contentString
-	  });
-		
-	    // this creates the marker in the user view
-		var marker = new google.maps.Marker({
-	      animation: google.maps.Animation.DROP,
-	      position: pos,
-	      map: map
-	  
-	  	});
+      var infowindow = new google.maps.InfoWindow({
+          content: contentString
+      });
+        
+        // this creates the marker in the user view
+        var marker = new google.maps.Marker({
+          animation: google.maps.Animation.DROP,
+          position: pos,
+          map: map
+      
+        });
 
-		// this creates zoom when user clicks marker
+        // this creates zoom when user clicks marker
         google.maps.event.addListener(marker, 'click', function() {
-	     map.setZoom(10);
-	     infowindow.open(map,marker);
-	     map.setCenter(marker.getPosition());
-	    });
+         map.setZoom(10);
+         infowindow.open(map,marker);
+         map.setCenter(marker.getPosition());
+        });
 
-	}
+    }
 }
 
 function handleNoGeolocation(errorFlag) {
@@ -85,14 +85,10 @@ function handleNoGeolocation(errorFlag) {
 
 // jquery call to initalize () on load basically
 $(document).ready(function() {
-	initialize();
+    initialize();
 });
 </script>
 
-<!-- this contains the map on the view -->
-<% flash.each do |key, value| %>
-    <h4><%= value %></h4>
-<% end %>
 
 
 
@@ -120,13 +116,56 @@ $(document).ready(function() {
                 </div>
                 end of container
             </section> -->
+
+                        <section class="pt120 pb120 image-bg overlay">
+                            <div class="background-image-holder">
+                                <img alt="Background" class="background-image" src="https://res.cloudinary.com/mckshreder/image/upload/q_100/v1447575025/IMG_0220_kcbdhf.jpg" />
+                            </div>
+                            <div class="container">
+                                <div class="row v-align-children">
+                                    <div class="col-sm-8 mb-xs-80">
+                                        <h2 class="mb16">WELCOME TO <br/>FOOTY™</h2>
+                                        <!-- <h3 class="mb16">SKATE | FILM | SHARE</h3>                                         -->
+                                        <h6 class="uppercase mb16">
+                                        A complete skateboard social network.
+                                        <br/>Publish & Share your very own skateboarding<br/>articles & events with theFootyapp™.</h6>
+                                        
+                                        <!-- <a class="btn btn-filled btn-lg mb0" href="#">Start Exploring</a> -->
+                                        <%= link_to "Start Exploring", new_user_path, class: "btn btn-filled btn-lg mb0"  %>
+                                    </div>
+                                    <div class="col-sm-4 text-center text-left-xs">
+                                        <div class="modal-container">
+                                            <div class="play-button btn-modal large inline"></div>
+                                            <div class="foundry_modal no-bg">
+                                                <iframe data-provider="youtube" data-video-id="9TKauIurEAQ" data-autoplay="1"></iframe>
+                                            </div>
+                                        </div>
+                                        <!--end of modal video-->
+                                    </div>
+                                </div>
+                                <!--end of row-->
+                            </div>
+                            <!--end of container-->
+                        </section>
             
             
+            <section class="bg-secondary pt0 pb0">
+                <div class="container p0">
+                    <div class="row mb0 mb-xs-8">
+                        <div class="col-sm-12 text-center">
+                            <h3 class="mb16 pt16">Today's Top Footy™</h3>
+                            <p class="lead mb8">
+                                A collection of skateboarding's brightest talent gathered in one place from all around the world.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <section class="bg-secondary pt0">
                 <div class="container p0">
                 
-                        <section class="page-title page-title-3 image-bg overlay mb0 mbs5">
+                        <!-- <section class="page-title page-title-3 image-bg overlay mb0 mbs5">
                             <div class="background-image-holder">
                                 <img alt="Background Image" class="background-image" src="http://res.cloudinary.com/mckshreder/image/upload/q_100/v1448362449/kevin_smith_2_150px-3951_h7gv2s.jpg" />
                             </div>
@@ -135,11 +174,15 @@ $(document).ready(function() {
                                     <div class="col-sm-12 text-center">
                                         <h2 class="uppercase mb0">Footy</h2>
                                         <p class="lead mb0">Skate, Film, Share</p>
+                                        this contains the map on the view
+                                        <% flash.each do |key, value| %>
+                                            <h4 class="pt8"><%= value %></h4>
+                                        <% end %>
                                     </div>
                                 </div>
                                 
                             </div>
-                            <!--end of container-->
+                            end of container
                               <ol class="breadcrumb breadcrumb-2">
                                   <li>
                                       <a href="#">Home</a>
@@ -150,7 +193,7 @@ $(document).ready(function() {
                                   <li class="active">All Footy</li>
                               </ol>
 
-                        </section>
+                        </section> -->
                   
 
                     <div class="col-md-9 pt8">
@@ -180,6 +223,29 @@ $(document).ready(function() {
                       </div>
                     </div> -->
 
+                    
+                    <!-- <div class="row">                      
+                        <div class="col-sm-12 ml5 mr8 mb_16 p0">
+                            
+                            <ul class="accordion accordion-1">
+                                <li>
+                                    <div class="title">
+                                   
+                                        <p>+<span> Todays Featured Footy</span></p>
+                                    </div>
+
+                                    <div class="content">
+                                        <p>
+                                            Listed below are the most recent articles posted on this website. We post everyone's footy straight to our feed. This will ultimately create the largest skateboarding community in the world. Please enjoy responsibly. <br><a href= "#">Have more questions? Let us help.</a>
+                                        </p>
+                                       
+                                    </div>
+                                </li>
+                            </ul>
+                            end of accordion
+                        </div>
+                    </div>
+                    end of row -->
 
                         <div class="row masonry-loader">
                             <div class="col-sm-12 text-center">
@@ -212,9 +278,9 @@ $(document).ready(function() {
                         </section> -->
 
                         
+                    
 
                         
-
                         <div class="row masonry masonryFlyIn mb40">
                         
                             
@@ -224,118 +290,64 @@ $(document).ready(function() {
     <% @posts.each do |post| %>
 
 
-                            <div class="col-sm-6 post-snippet masonry-item p0 mb5">
+                    <div class="col-sm-6 post-snippet masonry-item p0 mb5">
+                        
+                        <%= cl_video_tag(post.video.to_s.split("/upload/").last.split(".").first, :class => "mb_16 pb0", :video_codec=>"h264", :width=>493, :crop=>:scale, :controls => true, :fallback_content => "Your browser does not support HTML5 video tags")%>
+                        <div class="inner">
+                            <a href="#">
+                                <h5 class="mb8"><%= link_to "'#{post.title}'", post_path(id: post.id), :class => "title-link, blue" %></h5>
+                                 <i class="ti-user"></i>
+                                <span>Posted by
+                                    <%= link_to post.user.name ,  user_profile_path(post.user_id),:class => "option_link"%>
+                                </span>
+                                <!-- <span class="glyphicon glyphicon-time" aria-hidden="false">
+                                </span> -->
+                                <span class="mb16"><%= "  " + (remove_unwanted_words distance_of_time_in_words(Time.now, post.updated_at)) + " ago"  %></span>
+                            </a>
+                             
                                 
-                                <%= cl_video_tag(post.video.to_s.split("/upload/").last.split(".").first, :class => "mb_16 pb0", :video_codec=>"h264", :width=>493, :crop=>:scale, :controls => true, :fallback_content => "Your browser does not support HTML5 video tags")%>
-                                <div class="inner border-sm">
-                                    <a href="#">
-                                        <h5 class="mb8"><%= link_to "'#{post.title}'", post_path(id: post.id), :class => "title-link, blue", 'data-turbolinks-track' => true %></h5>
-                                         <i class="ti-user"></i>
-                                        <span>Posted by
-                                            <%= link_to post.user.name ,  user_profile_path(post.user_id),:class => "option_link", 'data-turbolinks-track' => true%>
-                                        </span>
-                                        <!-- <span class="glyphicon glyphicon-time" aria-hidden="false">
-                                        </span> -->
-                                        <span class="mb16"><%= "  " + (remove_unwanted_words distance_of_time_in_words(Time.now, post.updated_at)) + " ago"  %></span>
+                            <hr class="mb5">
+                            <p class="mb5"> <%= post.body %>
+                               <!--  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo. -->
+                            </p>
+                            
+
+                            
+                                    <!--<%= link_to "Read More",  user_profile_path(post.user_id),:class => "btn btn-sm" %>-->
+                                    <%= link_to "Read More", post_path(id: post.id), :class => "btn btn-sm" %>
+
+                              
+                              <!--<%= link_to "#{post.user.name.split.first}'s "+"Profile",  user_profile_path(post.user_id), :class => "option_link" %>
+                              <%= "  &  "%>
+                              <%= link_to "Full Video", post_path(id: post.id), :class => "option_link" %>-->
+                            
+                            <ul class="tags pull-right">
+                                <li>
+                                    <a class="btn btn-sm btn-icon" href="#">
+                                        <i class="ti-twitter-alt"></i>
                                     </a>
-                                     
-                                        
-                                    <hr class="mb5">
-                                    <p class="mb5"> <%= post.body %>
-                                       <!--  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo. -->
-                                    </p>
-                                    
+                                </li>
+                                <li>
+                                    <a class="btn btn-sm btn-icon" href="#">
+                                        <i class="ti-facebook"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
 
-                                    
-                                            <!--<%= link_to "Read More",  user_profile_path(post.user_id),:class => "btn btn-sm" %>-->
-                                            <%= link_to "Read More", post_path(id: post.id), :class => "btn btn-sm" %>
-
-                                      
-                                      <!--<%= link_to "#{post.user.name.split.first}'s "+"Profile",  user_profile_path(post.user_id), :class => "option_link" %>
-                                      <%= "  &  "%>
-                                      <%= link_to "Full Video", post_path(id: post.id), :class => "option_link" %>-->
-                                    
-                                    <ul class="tags pull-right">
-                                        <li>
-                                            <a class="btn btn-sm btn-icon" href="#">
-                                                <i class="ti-twitter-alt"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="btn btn-sm btn-icon" href="#">
-                                                <i class="ti-facebook"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                                <% end %>
+                        <% end %>
 
 <% else %>
     <h2>No Posts Exist</h2>
 <% end %>
-<% if @posts.count > 0 %>
-    <% @posts.each do |post| %>
 
-
-                            <div class="col-sm-6 post-snippet masonry-item p0 mb5">
-                                
-                                <%= cl_video_tag(post.video.to_s.split("/upload/").last.split(".").first, :class => "mb_16 pb0", :video_codec=>"h264", :width=>493, :crop=>:scale, :controls => true, :fallback_content => "Your browser does not support HTML5 video tags")%>
-                                <div class="inner border-sm">
-                                    <a href="#">
-                                        <h5 class="mb8"><%= link_to "'#{post.title}'", post_path(id: post.id), :class => "title-link, blue" %></h5>
-                                         <i class="ti-user"></i>
-                                        <span>Posted by
-                                            <%= link_to post.user.name ,  user_profile_path(post.user_id),:class => "option_link"%>
-                                        </span>
-                                        <!-- <span class="glyphicon glyphicon-time" aria-hidden="false">
-                                        </span> -->
-                                        <span class="mb16"><%= "  " + (remove_unwanted_words distance_of_time_in_words(Time.now, post.updated_at)) + " ago"  %></span>
-                                    </a>
-                                     
-                                        
-                                    <hr class="mb5">
-                                    <p class="mb5"> <%= post.body %>
-                                       <!--  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo. -->
-                                    </p>
-                                    
-
-                                    
-                                            <!--<%= link_to "Read More",  user_profile_path(post.user_id),:class => "btn btn-sm" %>-->
-                                            <%= link_to "Read More", post_path(id: post.id), :class => "btn btn-sm" %>
-
-                                      
-                                      <!--<%= link_to "#{post.user.name.split.first}'s "+"Profile",  user_profile_path(post.user_id), :class => "option_link" %>
-                                      <%= "  &  "%>
-                                      <%= link_to "Full Video", post_path(id: post.id), :class => "option_link" %>-->
-                                    
-                                    <ul class="tags pull-right">
-                                        <li>
-                                            <a class="btn btn-sm btn-icon" href="#">
-                                                <i class="ti-twitter-alt"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="btn btn-sm btn-icon" href="#">
-                                                <i class="ti-facebook"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                                <% end %>
-
-<% else %>
-    <h2>No Posts Exist</h2>
-<% end %>
                            
 
                             <!--end of snippet-->
                         </div>
                         <!--end of row-->
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="text-center">
                                 <ul class="pagination">
                                     <li>
@@ -365,91 +377,57 @@ $(document).ready(function() {
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> -->
                         <!--end of row-->
                     </div>
                     <!--end of 9 col-->
 <div class="col-md-3 hidden-sm pt8">
 <% if current_user %>
 
-    <!-- <ul id="topright_nav"> -->
-    <!-- <li> -->
-    <!-- <i class="icon-sm ti-user"></i> -->
-     <!-- <%= cl_image_tag(current_user.image,:width => 50, :height => 50, :crop => :fill, class: "user_profile_photo_tag") %> -->
+
+     <hr class="mb8">
+     <%= cl_image_tag(current_user.image,:width => 40, :height => 40, :crop => :fill, class: "user_profile_photo_tag") %>
           <small>Hello, </small>
             
             <%= link_to "#{current_user.name}", user_profile_path(current_user), class: "title pb8" %>
                       
-            <h5 class="title mb0 pt0">YOUR FOOTY™ DASHBOARD</h5>
-            
-                                <hr class="mb8">
-
-             <small>(select an option)</small>
-          
-          <!-- <span class="glyphicon glyphicon-cog" aria-hidden="true">
-          </span -->
-          
-          <!-- <ul> 
-            <li>
-                 <a><%= link_to "Your Profile", user_profile_path(current_user)%>
-                 </a>
-            </li> 
-            <li>
-                <a><%= link_to "Edit Account", edit_users_path(current_user) %>
-                </a>
-            </li>  
-            <li>
-                <a><%= link_to "Log out", destroy_session_path %>
-                </a>
-            </li>  
-          </ul> -->
-        <!-- </li> -->
-    <!-- </ul> -->
+            <h5 class="title mb0 pt8">FOOTY™ DASHBOARD</h5>
+            <hr class="mb0">
     
     <div class="feed_border pt8">
       <!-- <hr class = "small_line_break"> -->
         
     <% if current_user %>
     <div class="widget">
-                                <!-- <h6 class="title">Tags</h6> -->
-                                <ul class="tags">
-                                    <li>
-                                        <%= link_to "POST FOOTY", new_post_path, class: "btn btn-sm"  %>
-                                    </li>
-                                    <li>
-                                      <%= link_to "CREATE EVENT", new_event_path, class: "btn btn-sm"  %>
+        <!-- <h6 class="title">Tags</h6> -->
+        <ul class="lead" data-bullet="ti-arrow-right">
+            <li>
+                <%= link_to "My Profile", user_profile_path(current_user)%>
+            </li>
+            <li>
+                <%= link_to "Post Footy", new_post_path  %>
+            </li>
+            <li>
+              <%= link_to "Create Event", new_event_path  %>
 
-                                    </li>
-                                    <li>
-                                         <%= link_to "EDIT ACCOUNT", edit_users_path(current_user), class: "btn btn-sm"  %>
-                                    </li>
-                                    <li>
-                                        <%= link_to "LOG OUT", destroy_session_path, class: "btn btn-sm"  %>
-                                    </li>
-                                    <!-- <li>
-                                        <%= link_to "Your Profile", user_profile_path(current_user), class: "btn btn-sm"%>
-                                    </li> -->
-                                   <!--  <li>
-                                        <a class="btn btn-sm" href="#">Coffee</a>
-                                    </li>
-                                    <li>
-                                        <a class="btn btn-sm" href="#">Melons</a>
-                                    </li> -->
-                                </ul>
-                            </div>
-                            <!--end of widget-->
+            </li>
+            <li>
+                 <%= link_to "Edit Account", edit_users_path(current_user)  %>
+            </li>
+            <li>
+                <%= link_to "Log out", destroy_session_path  %>
+            </li>
+          
+        </ul>
+    </div>
+    <!--end of widget-->
 
-      <!--<%= link_to "POST FOOTY", new_post_path, class: "right_column_button"  %>
-      <%= link_to "CREATE EVENT", new_event_path, class: "right_column_button"  %>
-      <%= link_to "EDIT ACCOUNT", edit_users_path(current_user), class: "right_column_button"  %>
-      <%= link_to "LOG OUT", destroy_session_path, class: "right_column_button"  %>-->
     <% else %>
     <% end %>
     </div>
 
 <% else %>
-
-  <div class="feed_border">
+    <div class="feed_border">
         <h5 class="text-left mb8">theFOOTY™app</h5>
         <hr class="">
         <h5 class="text-left pb0 mb8">ALREADY A MEMBER?</h5>
@@ -472,6 +450,8 @@ $(document).ready(function() {
     <h5 class="center">NOT A MEMBER...?</h5>
     <%= link_to "CREATE YOUR ACCOUNT", new_user_path, class: "btn btn-large"  %>
     </div>
+    
+    
 
 <% end %>
 
@@ -482,18 +462,18 @@ $(document).ready(function() {
                   <h6 class="title">About The App</h6>
                   <hr>
                   <p>
-                      Sed ut perspiciatis unde omnis iste natus error sit voluptatem antium doloremque laudantium, totam rem aperiam, eaque ipsa quae.
+                      Footy was created to connect skateboarders all around the world. Use Footy as your online skateboard social network. Upload any photos, videos, or content to your profile. Quick fast and Easy.
                   </p>
               </div>
               <!--end of widget-->
               
-              <div class="widget">
+              <!-- <div class="widget">
                   <h6 class="title">Search All</h6>
                   <hr>
                   <form>
                       <input class="mb0" type="text" placeholder="Type Here" />
                   </form>
-              </div>
+              </div> -->
               <!--end of widget-->
 
               <!-- <div class="widget">
@@ -513,13 +493,13 @@ $(document).ready(function() {
 
                                     <li>
                                       <%= link_to "#{post.title}" ,  user_profile_path(post.user_id)%>
-                                        <span class="glyphicon glyphicon-time" aria-hidden="false">
-                                        </span>
+                                        <!-- <span class="glyphicon glyphicon-time" aria-hidden="false">
+                                        </span> -->
                                       <span class="date">
                                       <%= "  " + (remove_unwanted_words distance_of_time_in_words(Time.now, post.updated_at)) + " ago" %>
                                       </span>
                                     
-                                          <%= link_to "Full Video", post_path(id: post.id), :class => "option_link" %>
+                                          <%= link_to "Read More", post_path(id: post.id), :class => "date option_link" %>
                                     
                                     </li>
                                    
@@ -597,7 +577,7 @@ $(document).ready(function() {
 <!-- this creates ruby data in the view that can be accessed by JS if the <script> is on same exact file. multiple allows JS to know there is multple data  -->
 <select hidden, id = "marker_data" multiple>
 <% @posts.each do |post| %>
-	<option selected = "true" value = "<%= post.latitude%>,<%= post.longitude%>, <%= post.title%>, <=% post.id %>">
-	</option>	
+    <option selected = "true" value = "<%= post.latitude%>,<%= post.longitude%>, <%= post.title%>, <=% post.id %>">
+    </option>   
 <% end %>
 </select>
