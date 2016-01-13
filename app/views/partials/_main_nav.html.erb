@@ -15,56 +15,30 @@
                         <div class="module left">
                             <ul class="menu">
                                 <li>
-                                    <a href="#">
-                                        Home
-                                    </a>
+                                    
+                                    <%= link_to "Home", posts_path  %>
                                     
                                 </li>
 
-                                <li class="has-dropdown">
-                                    <a href="#">
-                                        Create
-                                    </a>
-                                    <ul class="mega-menu">
-                                        <li>
-                                            <ul>
-                                                <li>
-                                                    <span class="title">Create</span>
-                                                </li>
-                                                <li>
-                                                    <a href="page-about-us-1.html">Create Article</a>
-                                                </li>
-                                                <li>
-                                                    <a href="page-about-us-2.html">Create Event</a>
-                                                </li>
-                                                <li>
-                                                    <a href="page-about-us-3.html">Need Help?</a>
-                                                </li>
-                                                
-                                            </ul>
-                                        </li>
-                                        
-                                    </ul>
-                                </li>
                                 
                                 <li class="has-dropdown">
-                                    <a href="#">
-                                        Videos
-                                    </a>
+                                    <%= link_to "Videos", posts_path  %>
                                     <ul class="mega-menu">
                                         <li>
                                             <ul>
-                                                <li>
+                                                <!-- <li>
                                                     <span class="title">Videos</span>
-                                                </li>
-                                                 <li>
-                                                    <a href="page-about-us-1.html">View Most Recent</a>
+                                                </li> -->
+
+                                                <li>
+                                                    <%= link_to "Post Footy", new_post_path  %>
                                                 </li>
                                                 <li>
-                                                    <a href="page-about-us-2.html">View by map</a>
+                                                    <%= link_to "View All Footy", posts_path  %>
                                                 </li>
+                                                
                                                 <li>
-                                                    <a href="page-about-us-3.html">Need Help?</a>
+                                                    <a href="#">Search Footy Map</a>
                                                 </li>
                                                 
                                             </ul>
@@ -73,6 +47,7 @@
                                     </ul>
                                 </li>
 
+                                
                                 <li class="has-dropdown">
                                     <a href="#">
                                         Events
@@ -80,17 +55,17 @@
                                     <ul class="mega-menu">
                                         <li>
                                             <ul>
+                                                <!-- <li>
+                                                    <span class="title">Create</span>
+                                                </li> -->
                                                 <li>
-                                                    <span class="title">Events</span>
-                                                </li>
-                                                 <li>
-                                                    <a href="page-about-us-1.html">View Most Recent</a>
-                                                </li>
-                                                <li>
-                                                    <a href="page-about-us-2.html">View by map</a>
+                                                    <a href="#">Create Event</a>
                                                 </li>
                                                 <li>
-                                                    <a href="page-about-us-3.html">Need Help?</a>
+                                                    <a href="#">View Events</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Search Event Map</a>
                                                 </li>
                                                 
                                             </ul>

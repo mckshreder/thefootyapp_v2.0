@@ -28,39 +28,32 @@
 
                                 <!-- <form class="text-left"> -->
                                     <%= form_for @post, :html => { :multipart => true }, :method => :post do |f|  %>
-   
 
-    <!-- <div class="form-group">
-    <p>Upload a Photo<p>
-    <%= f.hidden_field(:image_cache)%>
-    <%= f.file_field(:image, :html => { :multiple => true })%>
-    </div>  -->
+                                    <div class="form-group">
+                                    
+                                    <h4 class="uppercase mb0 pb8">Upload a Video</h4>
+                                    <%= f.hidden_field(:video_cache)%>
+                                    <%= f.file_field(:video, :chunk_size => 6_000_000, :html => { :multiple => true })%>
+                                    </div>
 
-    <div class="form-group">
-    
-    <h4 class="uppercase mb0 pb8">Upload a Video</h4>
-    <%= f.hidden_field(:video_cache)%>
-    <%= f.file_field(:video, :chunk_size => 6_000_000, :html => { :multiple => true })%>
-    </div>
+                                    <div class="form-group">
+                                    <h4 class="uppercase mb0 pb8">Video Title</h4>
+                                    <!-- <%= f.label 'Title'%> -->
+                                    <%= f.text_field :title, class: "form-control" , type: "text"%>
+                                    </div>
 
-    <div class="form-group">
-    <h4 class="uppercase mb0 pb8">Input Title</h4>
-    <!-- <%= f.label 'Title'%> -->
-    <%= f.text_field :title, class: "form-control" , type: "text"%>
-    </div>
-
-    <div class="form-group">
-    <h4 class="uppercase mb0 pb8">Video Caption</h4>
-    <!-- <%= f.label 'Caption' %> -->
-    <%= f.text_area :body, class: "form-control", type: "text"%>
-    </div>
+                                    <div class="form-group">
+                                    <h4 class="uppercase mb0 pb8">Video Caption</h4>
+                                    <!-- <%= f.label 'Caption' %> -->
+                                    <%= f.text_area :body, class: "form-control", type: "text"%>
+                                    </div>
 
 
-    <div class="form-group">
-    <h4 class="uppercase mb0 pb8">'Address (City, State)'</h4>
-    <!-- <%= f.label 'Address (City, State)' %> -->
-    <%= f.text_field :address, class: "form-control", placeholder: "eg.(Whittier, CA)", type: "text"%>
-    </div>
+                                    <div class="form-group">
+                                    <h4 class="uppercase mb0 pb8">'Location-(City, State)'</h4>
+                                    <!-- <%= f.label 'Address (City, State)' %> -->
+                                    <%= f.text_field :address, class: "form-control", placeholder: "eg.(Whittier, CA)", type: "text"%>
+                                    </div>
 
 
                                     <div class="actions">
